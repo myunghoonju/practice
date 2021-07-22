@@ -2,3 +2,7 @@ practice/reference/StaticBlock.java
  practice.reference.StaticBlock
 practice/packaging/PackageObj.java
  practice.packaging.PackageObj
+practice/reference/ReferencePass.java
+ practice.reference.ReferencePass
+practice/reference/MethodVarargs.java
+ practice.reference.MethodVarargs
