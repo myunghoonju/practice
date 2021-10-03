@@ -44,10 +44,11 @@ public class SearchIndexTwo {
         }
         for (int j = 0; j < univs.size(); j++) {
             if (targetUniv.equals(univs.get(j))) {
-                indexes.add(j+1);
+                indexes.add(j);
             }
         }
-
-        System.out.println(indexes.get(0) + " " + indexes.get(indexes.size()-1));
+        int first = indexes.get(0)+1;
+        int last = indexes.get(indexes.size()-1)+1;
+        System.out.println(first + " " + last);
     }
 }
