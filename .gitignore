@@ -1,10 +1,5 @@
 # Project exclude paths
 .gradle
 .idea
-.idea/compiler.xml
-.idea/gradle.xml
-
 build
-build/tmp/compileJava/source-classes-mapping.txt
-
 out
