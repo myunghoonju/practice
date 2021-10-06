@@ -22,7 +22,6 @@ public class SearchIndexThree {
         int denominator = Integer.parseInt(br.readLine());
         String[] range = br.readLine().split(" ");
         int sum = 0;
-        int avg = 0;
         int index = 0;
         Integer[] rangeInt = new Integer[denominator];
 
