@@ -15,9 +15,8 @@ public class SelectionSort {
             data[index++] = Integer.parseInt(num);
         }
 
-        int minIndex = 0;
         for (int i = 0; i < range; i++) {
-            minIndex = getMinIndex(data, range, i);
+            int minIndex = getMinIndex(data, range, i);
 
             int temp = data[minIndex];
             data[minIndex] = data[i];
