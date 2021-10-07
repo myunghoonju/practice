@@ -15,6 +15,33 @@ public class SelectionSort {
             data[index++] = Integer.parseInt(num);
         }
 
-        //selection sort
+        int minIndex = 0;
+        for (int i = 0; i < range; i++) {
+            minIndex = getMinIndex(data, range, i);
+
+            int temp = data[minIndex];
+            data[minIndex] = data[i];
+            data[i] = temp;
+        }
+
+        index = 0;
+        for (int num: data) {
+            index++;
+            if (index > 0) {
+                System.out.print(" ");
+            }
+            System.out.print(num);
+        }
+    }
+
+    private static int getMinIndex(int[] data, int range, int start) {
+        int result = start;
+        for (int j = start; j < range; j++) {
+            if (data[result] > data[j]) {
+                result = j;
+            }
+        }
+
+        return result;
     }
 }
