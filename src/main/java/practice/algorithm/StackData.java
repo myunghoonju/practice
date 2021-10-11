@@ -2,7 +2,7 @@ package practice.algorithm;
 
 import java.util.Stack;
 
-public class stackData {
+public class StackData {
     public static final String POP = "POP";
     public static final String DUP = "DUP";
     public static final String PLUS = "+";
