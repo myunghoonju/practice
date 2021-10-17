@@ -15,9 +15,36 @@ package practice.algorithm.ch02;
 
 */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedHashSet;
+
 public class ElementTypeCount {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        // 중복없는 자료 개수 반환(모두 -1인경우 1 반환)
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int range = Integer.parseInt(br.readLine());
+        String[] data = br.readLine().split(" ");
 
+        System.out.println(getElementTypeCount(data, range));
+    }
+
+    public static int getElementTypeCount(String[] data, int range) {
+        int minusCnt = 0;
+        LinkedHashSet<Integer> noDupData = new LinkedHashSet<>();
+        for (String numStr : data) {
+            int num = Integer.parseInt(numStr);
+            if (num < 0) {
+                minusCnt++;
+            }
+            noDupData.add(num);
+        }
+
+        if (minusCnt == range) {
+            return 1;
+        }
+        return noDupData.size();
     }
 }
