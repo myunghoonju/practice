@@ -58,6 +58,22 @@ public class ReflectionUnitTest {
         assertTrue(Modifier.isAbstract(animalMods));
     }
 
+    @Test
+    public void testFive() {
+        log.info("givenClass_whenGetsPackageInfo_thenCorrect");
+        final Goat goat = new Goat("goat");
+        final Class<?> goatC = goat.getClass();
+        final Package pkg = goatC.getPackage();
+
+        assertEquals("practice.reflection", pkg.getName());
+    }
+
+    @Test
+    public void testSix() {
+        log.info("givenClass_whenGetsSuperClass_thenCorrect");
+
+    }
+
     private static List<String> getFieldNames(Field[] fields) {
         final List<String> fieldNames = new ArrayList<>();
 
