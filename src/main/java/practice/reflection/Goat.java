@@ -1,6 +1,6 @@
 package practice.reflection;
 
-public class Goat extends Animal implements Eating {
+public class Goat extends Animal implements Locomotion {
 
     public Goat(String name) {
         super(name);
@@ -8,6 +8,16 @@ public class Goat extends Animal implements Eating {
 
     @Override
     public String eats() {
-        return null;
+        return "grass";
+    }
+
+    @Override
+    public String getLocomotion() {
+        return "walks";
+    }
+
+    @Override
+    public String getSound() {
+        return "bleat";
     }
 }

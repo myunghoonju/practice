@@ -17,4 +17,6 @@ public abstract class Animal implements Eating {
     public void setName(String name) {
         this.name = name;
     }
+
+    protected abstract String getSound();
 }

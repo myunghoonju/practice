@@ -29,4 +29,9 @@ public class Bird extends Animal {
     public String eats() {
         return "grains";
     }
+
+    @Override
+    public String getSound() {
+        return "chips";
+    }
 }
