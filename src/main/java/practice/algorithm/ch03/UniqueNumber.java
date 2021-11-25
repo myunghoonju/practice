@@ -29,7 +29,7 @@ public class UniqueNumber {
             }
         }
 
-        for(int k = 0 ; k < answer.size() ; k++) {
+        for(int k = 0; k < answer.size(); k++) {
             int element = answer.get(k);
             if (k > 0) {
                 System.out.print(" ");
