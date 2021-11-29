@@ -1,4 +1,5 @@
 package gof.structural.proxy;
+/*
 
 import java.util.List;
 
@@ -50,5 +51,5 @@ public class TwitterServiceImpl implements TwitterService {
 		// we aren't going to allow this
 		System.out.println(message);
 	}
-
 }
+*/

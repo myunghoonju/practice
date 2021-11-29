@@ -1,3 +1,4 @@
+/*
 package gof.creational.singleton;
 
 import java.sql.Connection;
@@ -56,3 +57,4 @@ public class DbSingleton {
     return conn;
   }
 }
+*/

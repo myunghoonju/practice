@@ -5,9 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import gof.creational.singleton.DbSingleton;
+/*import gof.creational.singleton.DbSingleton;*/
 
 public class JdbcBeforeFacadeDemo {
+/*
 
 	public static void main(String[] args) {
 		DbSingleton instance = DbSingleton.getInstance();
@@ -38,5 +39,6 @@ public class JdbcBeforeFacadeDemo {
 			e.printStackTrace();
 		}
 	}
+*/
 
 }

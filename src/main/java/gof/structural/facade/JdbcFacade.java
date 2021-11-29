@@ -7,9 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import gof.creational.singleton.DbSingleton;
+//import gof.creational.singleton.DbSingleton;
 
 public class JdbcFacade {
+/*
 
 	DbSingleton instance = null;
 
@@ -70,5 +71,6 @@ public class JdbcFacade {
 		}
 		return addressList;
 	}
+*/
 
 }
