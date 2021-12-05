@@ -17,7 +17,7 @@ public class Fibonacci {
         tempTable[1] = 0;
         tempTable[2] = 1;
         for (int i = 3; i <= MAX_N; i++) {
-            tempTable[i] = (tempTable[i - 1] + tempTable[i - 2]) % 1_000_000;
+            tempTable[i] = (tempTable[i - 1] + tempTable[i - 2]) % 100_000_000;
         }
 
         return tempTable;
