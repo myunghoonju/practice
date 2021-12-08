@@ -11,10 +11,10 @@ public class Paper {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int caseNo = Integer.parseInt(br.readLine()); // 2
+        int caseNo = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < caseNo; i++) {
-            int paperNo = Integer.parseInt(br.readLine()); // 3
+            int paperNo = Integer.parseInt(br.readLine());
             Papers[] papers = new Papers[paperNo];
             for (int index = 0; index < paperNo; index++) {
                 int[] xy = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -23,11 +23,11 @@ public class Paper {
                 papers[index] = new Papers(x, y);
             }
 
-            System.out.println(getArea(papers, paperNo));
+            System.out.println(getArea(papers));
         }
     }
 
-    static int getArea(Papers[] papers, int n) {
+    static int getArea(Papers[] papers) {
         int answer = 0;
         int[][] board = new int[MAX_PAPER][MAX_PAPER];
 
@@ -41,7 +41,9 @@ public class Paper {
 
         for (int row = 0; row < MAX_PAPER; row++) {
             for (int col = 0; col < MAX_PAPER; col++) {
-                answer += 1;
+                if (board[row][col] > 0) {
+                    answer++;
+                }
             }
         }
 
