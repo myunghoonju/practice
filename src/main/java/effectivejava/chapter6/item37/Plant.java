@@ -32,12 +32,15 @@ class Plant {
         };
 
         // 코드 37-1 ordinal()을 배열 인덱스로 사용 - 따라 하지 말 것! (226쪽)
-        Set<Plant>[] plantsByLifeCycleArr =
-                (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+        @SuppressWarnings("unchecked")
+        Set<Plant>[] plantsByLifeCycleArr = (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+
         for (int i = 0; i < plantsByLifeCycleArr.length; i++)
             plantsByLifeCycleArr[i] = new HashSet<>();
+
         for (Plant p : garden)
             plantsByLifeCycleArr[p.lifeCycle.ordinal()].add(p);
+
         // 결과 출력
         for (int i = 0; i < plantsByLifeCycleArr.length; i++) {
             System.out.printf("%s: %s%n",
@@ -45,12 +48,14 @@ class Plant {
         }
 
         // 코드 37-2 EnumMap을 사용해 데이터와 열거 타입을 매핑한다. (227쪽)
-        Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle =
-                new EnumMap<>(Plant.LifeCycle.class);
+        Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LifeCycle.class);
+
         for (Plant.LifeCycle lc : Plant.LifeCycle.values())
             plantsByLifeCycle.put(lc, new HashSet<>());
+
         for (Plant p : garden)
             plantsByLifeCycle.get(p.lifeCycle).add(p);
+
         System.out.println(plantsByLifeCycle);
 
         // 코드 37-3 스트림을 사용한 코드 1 - EnumMap을 사용하지 않는다! (228쪽)
