@@ -11,6 +11,8 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @Slf4j
 @RunWith(Parameterized.class)
 public class ParameterizedTest {
@@ -46,7 +48,7 @@ public class ParameterizedTest {
     @Test
     public void validateTest() {
         log.info("Parameterized number:: {}", inputNumber);
-        Assertions.assertThat(expected).isEqualTo(validate(inputNumber));
+        assertThat(expected).isEqualTo(validate(inputNumber));
     }
 
     Boolean validate(final int primeNumber) {
