@@ -20,19 +20,20 @@ public class ReserveSeat {
     private static int sol(int range, int winners, int[] digits) {
         int sol = 0;
         int MAX = 1_000_000;
+        int winnerIndex = winners - 1;
         FreqTable freqTable = new FreqTable(0, new int[MAX]);
 
-        for (int i = 0; i < range-1 ; i++) {
+        for (int i = 0; i < winnerIndex; i++) {
             freqTable.addDigits(digits[i]);
         }
 
-        for (int j = 0; (j + range -1) < range; j++) {
-            int left = j;
-            int right = (j + range - 1);
+        for (int leftIndex = 0; (leftIndex + winnerIndex) < range; leftIndex++) {
+            int left = leftIndex;
+            int right = (leftIndex + winnerIndex);
 
             freqTable.addDigits(digits[right]);
             if (left > 0) {
-                freqTable.removeDigits(digits[left -1]);
+                freqTable.removeDigits(digits[left - 1]);
             }
             if (freqTable.uniqueDigits == winners) {
                 sol++;
