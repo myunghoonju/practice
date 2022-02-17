@@ -9,13 +9,12 @@ import java.util.HashMap;
 public class Invitation {
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] nm = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int range = nm[0];
         int[] cards = new int[range + 1];
         int[] cardsData  = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        for (int i = 1; i < cardsData.length; i++) {
+        for (int i = 1; i <= cardsData.length; i++) {
             cards[i] = cardsData[i - 1];
         }
 
