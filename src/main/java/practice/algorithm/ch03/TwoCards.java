@@ -28,7 +28,7 @@ public class TwoCards {
             for (int card : candidates) {
                 int search = number - card;
                 int resultIdx = Arrays.binarySearch(candidates, search);
-                if (resultIdx > 0) {
+                if (resultIdx >= 0) {
                     flag = true;
                 }
             }
