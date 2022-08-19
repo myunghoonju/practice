@@ -50,7 +50,5 @@ public class GuavaTest {
         //then
         assertThat(immutableMap.containsKey("USA")).isTrue();
         assertThat(immutableMap.containsKey("Mexico")).isFalse();
-        assertThrows(UnsupportedOperationException.class, () -> immutableMap.put("Canada", "North America"));
-
     }
 }
