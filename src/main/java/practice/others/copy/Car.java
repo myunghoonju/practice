@@ -1,4 +1,4 @@
-package practice.others;
+package practice.others.copy;
 
 import lombok.Getter;
 import lombok.Setter;
