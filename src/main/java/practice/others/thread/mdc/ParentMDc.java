@@ -19,9 +19,7 @@ public class ParentMDc {
     public void runMultiThreadByExecutor() throws Exception {
         log.info("before start child thread");
         executorService.submit(new ChildMDc());
-        ChildMDc childMDc = new ChildMDc();
-        childMDc.run();
-        log.info("after start child thread");
+        log.info("child thread starts");
         executorService.shutdown();
         // while running in the child thread
         boolean result = executorService.awaitTermination(3, TimeUnit.SECONDS);

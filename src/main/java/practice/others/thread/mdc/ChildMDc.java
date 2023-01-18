@@ -16,7 +16,8 @@ public class ChildMDc implements Runnable {
 
     @Override
     public void run() {
+        MDC.clear();
         MDC.setContextMap(contextMap);
-        log.info("Running in the child thread");
+        log.info("Running in the child thread " + MDC.get("IP"));
     }
 }
