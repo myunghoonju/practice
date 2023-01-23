@@ -13,7 +13,7 @@ public class LoggingController {
 
     @GetMapping("/log")
     public ResponseEntity<String> log() {
-        log.info("aaa {}", MDC.get("requestId"));
+        log.info("ID:: {}", MDC.get("REQUEST_ID"));
         return ResponseEntity.ok().body(HttpStatus.OK.toString());
     }
 

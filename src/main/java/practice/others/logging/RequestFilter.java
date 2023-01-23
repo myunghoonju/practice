@@ -17,17 +17,15 @@ public class RequestFilter implements Filter {
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
     @Override
+    public void destroy() {
+        MDC.clear();
+    }
+
+    @Override
     public void doFilter(ServletRequest req,
                          ServletResponse res,
                          FilterChain chain) throws IOException, ServletException {
-
-        try {
-
-            MDC.put("requestId", String.valueOf(atomicInteger.incrementAndGet()));
-
-            chain.doFilter(req, res);
-        } finally {
-            //MDC.clear();
-        }
+        MDC.put("REQUEST_ID", String.valueOf(atomicInteger.incrementAndGet()));
+        chain.doFilter(req, res);
     }
 }
