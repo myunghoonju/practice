@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.7.7'
+        logbackContribVersion = '0.1.5'
     }
     repositories {
         mavenCentral()
@@ -31,6 +32,9 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('com.google.guava:guava:31.1-jre')
+    implementation("ch.qos.logback.contrib:logback-jackson:${logbackContribVersion}")
+    implementation ("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
+
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
