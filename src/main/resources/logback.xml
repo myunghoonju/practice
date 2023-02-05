@@ -18,11 +18,8 @@
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="practice.others.logging.CustomLayout">
-                <appendLineSeparator>true</appendLineSeparator>
-                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter"/>
-                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
-            </layout>
+            <layout class="practice.others.logging.CustomLayout2" />
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 

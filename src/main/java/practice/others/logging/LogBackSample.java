@@ -13,7 +13,7 @@ public class LogBackSample {
        wrapIsMethod();
     }
 
-    static void wrapIsMethod() {
+    public static void wrapIsMethod() {
         log.info(LOG_TYPE_AGENCY, "Example marked log from {}", LogBackSample.class.getSimpleName());
     }
 }

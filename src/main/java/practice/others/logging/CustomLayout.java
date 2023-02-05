@@ -20,7 +20,7 @@ public class CustomLayout extends JsonLayout {
         addTimestamp(TIMESTAMP_ATTR_NAME, this.includeTimestamp, event.getTimeStamp(), map);
         add("logType", true , getLogType(event), map);
         add(THREAD_ATTR_NAME, this.includeThreadName, event.getThreadName(), map);
-        add("loggedAt", true, getCaller(event), map);
+        add("loggedAt", true, event.getLoggerName(), map);
         add(FORMATTED_MESSAGE_ATTR_NAME, this.includeFormattedMessage, event.getFormattedMessage(), map);
         addThrowableInfo(EXCEPTION_ATTR_NAME, this.includeException, event, map);
 
