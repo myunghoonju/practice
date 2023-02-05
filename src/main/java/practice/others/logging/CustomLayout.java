@@ -1,30 +1,54 @@
 package practice.others.logging;
 
-
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.contrib.json.classic.JsonLayout;
+import ch.qos.logback.core.CoreConstants;
+import ch.qos.logback.core.LayoutBase;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import static practice.others.logging.LogType.NONE;
 
-public class CustomLayout extends JsonLayout {
+public class CustomLayout extends LayoutBase<ILoggingEvent> {
+
 
     @Override
-    protected Map toJsonMap(ILoggingEvent event) {
+    public String doLayout(ILoggingEvent event) {
+        StringBuffer sbuf = new StringBuffer(128);
+        sbuf.append(formatTimestamp(event.getTimeStamp(), null));
+        sbuf.append(" ");
+        sbuf.append(event.getLevel());
+        sbuf.append(" [");
+        sbuf.append(event.getThreadName());
+        sbuf.append("] ");
+        sbuf.append("[LOG_TYPE=");
+        sbuf.append(getLogType(event));
+        sbuf.append("] ");
+        sbuf.append(event.getLoggerName());
+        sbuf.append(" - ");
+        sbuf.append(event.getFormattedMessage());
+        sbuf.append(CoreConstants.LINE_SEPARATOR);
+        return sbuf.toString();
+    }
 
-        Map<String, Object> map = new LinkedHashMap<>();
-        add(LEVEL_ATTR_NAME, this.includeLevel, String.valueOf(event.getLevel()), map);
-        addTimestamp(TIMESTAMP_ATTR_NAME, this.includeTimestamp, event.getTimeStamp(), map);
-        add("logType", true , getLogType(event), map);
-        add(THREAD_ATTR_NAME, this.includeThreadName, event.getThreadName(), map);
-        add("loggedAt", true, event.getLoggerName(), map);
-        add(FORMATTED_MESSAGE_ATTR_NAME, this.includeFormattedMessage, event.getFormattedMessage(), map);
-        addThrowableInfo(EXCEPTION_ATTR_NAME, this.includeException, event, map);
+    protected String formatTimestamp(long timestamp, String timeZone) {
+        String timestampFormat = "yyyy-MM-dd HH:mm:ss.SSS";
+        if (timestamp < 0) {
+            return String.valueOf(timestamp);
+        }
+        Date date = new Date(timestamp);
+        DateFormat format =  new SimpleDateFormat(timestampFormat);
 
-        return map;
+        if (StringUtils.hasText(timeZone)) {
+            TimeZone tz = TimeZone.getTimeZone(timeZone);
+            format.setTimeZone(tz);
+        }
+
+        return format.format(date);
     }
 
     private String getLogType(ILoggingEvent event) {
@@ -45,4 +69,3 @@ public class CustomLayout extends JsonLayout {
         return "";
     }
 }
-

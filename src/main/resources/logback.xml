@@ -18,7 +18,7 @@
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="practice.others.logging.CustomLayout2" />
+            <layout class="practice.others.logging.CustomLayout" />
             <charset>UTF-8</charset>
         </encoder>
     </appender>
