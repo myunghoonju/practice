@@ -5,6 +5,7 @@ buildscript {
         logbackContribVersion = '0.1.5'
         cacheApiVersion = '1.1.1'
         ehcacheVersion = '3.10.8'
+        okhttpVersion = '4.10.0'
     }
     repositories {
         mavenCentral()
@@ -40,6 +41,7 @@ dependencies {
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("ch.qos.logback.contrib:logback-jackson:${logbackContribVersion}")
     implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
+    implementation("com.squareup.okhttp3:okhttp:${okhttpVersion}")
 
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
