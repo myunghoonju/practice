@@ -1,7 +1,10 @@
 buildscript {
     ext {
         springBootVersion = '2.7.7'
+        guavaVersion = '31.1-jre'
         logbackContribVersion = '0.1.5'
+        cacheApiVersion = '1.1.1'
+        ehcacheVersion = '3.10.8'
     }
     repositories {
         mavenCentral()
@@ -31,9 +34,12 @@ test {
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter')
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('com.google.guava:guava:31.1-jre')
+    implementation('org.springframework.boot:spring-boot-starter-cache')
+    implementation("javax.cache:cache-api:${cacheApiVersion}")
+    implementation("org.ehcache:ehcache:${ehcacheVersion}")
+    implementation("com.google.guava:guava:${guavaVersion}")
     implementation("ch.qos.logback.contrib:logback-jackson:${logbackContribVersion}")
-    implementation ("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
+    implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
 
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
