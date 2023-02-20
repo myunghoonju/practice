@@ -9,6 +9,7 @@ import org.ehcache.event.EventType;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import practice.others.cache.domain.model.Agency;
 
 import javax.cache.CacheManager;
 import javax.cache.Caching;
@@ -32,10 +33,16 @@ public class CacheConfig {
                                                                              .withService(listenerConfig)
                                                                              .build();
 
+        CacheConfiguration<String, Agency> agencyConfig = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, Agency.class, pool)
+                                                                             .withService(listenerConfig)
+                                                                             .build();
+
         Configuration<String, String> configuration = Eh107Configuration.fromEhcacheCacheConfiguration(config);
+        Configuration<String, Agency> agencyconfiguration = Eh107Configuration.fromEhcacheCacheConfiguration(agencyConfig);
 
         cacheManager.createCache("userA", configuration);
         cacheManager.createCache("userB", configuration);
+        cacheManager.createCache("agencyCache", agencyconfiguration);
 
         return cacheManager;
     }
