@@ -36,6 +36,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-cache')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation("javax.cache:cache-api:${cacheApiVersion}")
     implementation("org.ehcache:ehcache:${ehcacheVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
@@ -43,6 +44,7 @@ dependencies {
     implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
     implementation("com.squareup.okhttp3:okhttp:${okhttpVersion}")
 
+    runtimeOnly('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
