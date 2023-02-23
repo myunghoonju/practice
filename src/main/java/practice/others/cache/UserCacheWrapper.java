@@ -1,6 +1,5 @@
 package practice.others.cache;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import practice.others.cache.domain.AgencyInfo;
@@ -62,8 +61,10 @@ public class UserCacheWrapper {
     void init() {
         String agency = "TEST";
         String info = "{ \"url\": { \"base\": \"https://api.happycrew.co.kr\", \"deposit\": \"/pos/foodTech/search/point\", \"fee\": \"/pos/foodTech/search/distance\", \"request\": \"/pos/foodTech/delivery/insert\", \"update\": \"/pos/foodTech/delivery/modify\", \"cancel\": \"/pos/foodTech/delivery/cancel\" }, \"header\": { \"X-CLIENT-TOKEN\": \"f5653057f739b4b8fa606f4dc0d326d5a24345f3a866cb5778511807f6b7ac9c\", \"Content-Type\": \"application/json; charset=UTF-8\" } }";
-        AgencyInfo agencyInfo = new AgencyInfo();
-        agencyInfo.save(agency, info);
+        AgencyInfo agencyInfo = AgencyInfo.builder()
+                                          .agencyCd(agency)
+                                          .information(info)
+                                          .build();
         agencyInfoRepository.save(agencyInfo);
     }
 }

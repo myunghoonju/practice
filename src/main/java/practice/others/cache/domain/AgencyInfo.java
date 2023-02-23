@@ -1,6 +1,9 @@
 package practice.others.cache.domain;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "AGENCY_INFO")
 @Entity
 public class AgencyInfo {
@@ -21,7 +25,8 @@ public class AgencyInfo {
     @Column(columnDefinition = "varchar(1000) null")
     private String information;
 
-    public void save(String agencyCd, String information) {
+    @Builder
+    public AgencyInfo(String agencyCd, String information) {
         this.agencyCd = agencyCd;
         this.information = information;
     }
