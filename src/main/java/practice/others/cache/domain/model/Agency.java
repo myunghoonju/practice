@@ -16,7 +16,7 @@ public class Agency {
 
     private String agencyCd;
     private Map<String, String> agyHeaderData;
-    private AgencyUrl agyUrlData;
+    private Map<String, String> agyUrlData;
 
     public static ObjectMapper mapper = new ObjectMapper();
 
@@ -27,7 +27,7 @@ public class Agency {
         Object url = map.get("url");
         Object header = map.get("header");
 
-        this.agyUrlData = mapper.convertValue(url, AgencyUrl.class);
+        this.agyUrlData = mapper.convertValue(url, Map.class);
         this.agyHeaderData = mapper.convertValue(header, Map.class);
         this.agencyCd = agencyInfo.getAgencyCd();
     }

@@ -27,7 +27,7 @@ public class LoggingController {
         Object userA = userCacheWrapper.getUserA(requestId);
         Agency test = userCacheWrapper.getAgency("TEST");
         log.info("userA {}", userA.toString());
-        log.info("test {} base {} header {}", test.getAgencyCd(), test.getAgyUrlData().getBase(), test.getAgyHeaderData());
+        log.info("test {} base {} header {}", test.getAgencyCd(), test.getAgyUrlData().get("base"), test.getAgyHeaderData());
 
         return ResponseEntity.ok().body(HttpStatus.OK.toString());
     }
