@@ -26,17 +26,14 @@ public class TokenGenerator {
         String input = TIMESTAMP + NONCE + ACCESSKEY;
         try {
             MessageDigest md = MessageDigest.getInstance(SHA_512);
-            //System.out.println("before reset :: " + String.format("%0128x", new BigInteger(1, md.digest())));
             md.update(input.getBytes());
-            //System.out.println("updated :: " + String.format("%0128x", new BigInteger(1, md.digest())));
-            //md.reset();
-            //System.out.println("after reset :: " + String.format("%0128x", new BigInteger(1, md.digest())));
+
             return String.format("%0128x", new BigInteger(1, md.digest()));
         } catch (NoSuchAlgorithmException | ProviderException e) {
             e.printStackTrace();
         }
 
-        return "";
+        return null;
     }
 
     public static String getToken() {
