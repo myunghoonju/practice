@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import practice.others.cache.domain.AgencyInfo;
 
 import java.util.Map;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor

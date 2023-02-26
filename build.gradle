@@ -7,6 +7,7 @@ buildscript {
         ehcacheVersion = '3.10.8'
         retrofitVersion = '2.9.0'
         retrofitConverterGsonVersion = '2.9.0'
+        retrofitConverterJacksonVersion = '2.9.0'
     }
     repositories {
         mavenCentral()
@@ -45,6 +46,7 @@ dependencies {
     implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
     implementation("com.squareup.retrofit2:retrofit:${retrofitVersion}")
     implementation("com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}")
+    implementation("com.squareup.retrofit2:converter-jackson:${retrofitConverterJacksonVersion}")
 
     runtimeOnly('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')

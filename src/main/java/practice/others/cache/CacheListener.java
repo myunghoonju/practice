@@ -9,8 +9,14 @@ import org.ehcache.event.CacheEventListener;
 @Slf4j
 public class CacheListener implements CacheEventListener<Object, Object> {
 
+    private static final String EVENT_TYPE_FOR_LOG = "UPDATED";
+
     @Override
     public void onEvent(CacheEvent<? extends Object, ? extends Object> event) {
+        if (!EVENT_TYPE_FOR_LOG.equals(event.getType().toString())) {
+            return;
+        }
+
         ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
         objectNode.put("key", event.getKey().toString());
         objectNode.put("type", event.getType().toString());

@@ -5,8 +5,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import practice.others.cache.UserCacheWrapper;
 
-import java.time.LocalDateTime;
-
 @Slf4j
 @Service
 public class Scheduler {
@@ -20,6 +18,5 @@ public class Scheduler {
     @Scheduled(cron = "0 */1 * * * *")
     public void mytask() {
         userCacheWrapper.setAgencyCache();
-        log.info("time --> {}", LocalDateTime.now());
     }
 }
