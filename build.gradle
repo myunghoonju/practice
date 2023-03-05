@@ -5,7 +5,6 @@ buildscript {
         logbackContribVersion = '0.1.5'
         cacheApiVersion = '1.1.1'
         ehcacheVersion = '3.10.8'
-        ehcacheClusteredVersion = '3.10.8'
         retrofitVersion = '2.9.0'
         retrofitConverterGsonVersion = '2.9.0'
         retrofitConverterJacksonVersion = '2.9.0'
@@ -43,7 +42,6 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation("javax.cache:cache-api:${cacheApiVersion}")
     implementation("org.ehcache:ehcache:${ehcacheVersion}")
-    implementation("org.ehcache:ehcache-clustered:${ehcacheClusteredVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("ch.qos.logback.contrib:logback-jackson:${logbackContribVersion}")
     implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
