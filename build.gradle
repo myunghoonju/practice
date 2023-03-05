@@ -52,6 +52,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-jackson:${retrofitConverterJacksonVersion}")
     //TODO:: get to know it.
     implementation("com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}")
+    implementation('mysql:mysql-connector-java')
 
     runtimeOnly('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')

@@ -3,19 +3,19 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/testdb
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/example?serverTimezone=UTC&characterEncoding=UTF-8
+    username: local_rdb_master
+    password: local_rdb
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: update
+
     properties:
       hibernate:
-        #        show_sql: true
         format_sql: true
-        default_batch_fetch_size: 100 # in query param size:: item0_.item_id in (?, ?, ?...) -> solve n+1
 
 logging.level:
   org.hibernate.SQL: debug
