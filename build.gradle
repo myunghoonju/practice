@@ -50,7 +50,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${retrofitVersion}")
     implementation("com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}")
     implementation("com.squareup.retrofit2:converter-jackson:${retrofitConverterJacksonVersion}")
-    //TODO:: get to know it
+    //TODO:: get to know it.
     implementation("com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}")
 
     runtimeOnly('com.h2database:h2')
