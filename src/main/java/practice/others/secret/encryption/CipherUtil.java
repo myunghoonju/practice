@@ -56,12 +56,12 @@ public class CipherUtil {
     }
 
     public static String aesDecrypt(String str) throws UnsupportedEncodingException,
-            NoSuchPaddingException,
-            NoSuchAlgorithmException,
-            InvalidKeyException,
-            InvalidAlgorithmParameterException,
-            IllegalBlockSizeException,
-            BadPaddingException {
+                                                       NoSuchPaddingException,
+                                                       NoSuchAlgorithmException,
+                                                       InvalidKeyException,
+                                                       InvalidAlgorithmParameterException,
+                                                       IllegalBlockSizeException,
+                                                       BadPaddingException {
         //UnsupportedEncodingException
         byte[] key = AESKEY.getBytes(CHARSET_NAME);
         byte[] value = DatatypeConverter.parseHexBinary(str);
