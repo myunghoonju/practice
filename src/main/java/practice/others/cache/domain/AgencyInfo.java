@@ -1,9 +1,11 @@
 package practice.others.cache.domain;
 
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
+import practice.others.cache.domain.time.BaseTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+@DynamicUpdate
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
 @Table(name = "AGENCY_INFO")
 @Entity
-public class AgencyInfo {
+public class AgencyInfo extends BaseTime {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
