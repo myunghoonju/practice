@@ -7,6 +7,8 @@ import practice.others.cache.domain.model.AgencyDto;
 import practice.others.secret.encryption.CipherUtil;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 
@@ -34,7 +36,10 @@ public class AgencyInfoService {
 
     @Transactional
     public void reEncryptSaving() throws Exception {
-        List<AgencyInfo> all = repository.findAll();
+        LocalDateTime created = LocalDateTime.of(2023, Month.MARCH, 3, 17, 20, 0);
+        LocalDateTime modified = LocalDateTime.of(2023, Month.MARCH, 9, 17, 20, 0);
+        List<AgencyInfo> all = repository.findByCreatedDateGreaterThanAndModifiedDateLessThan(created, modified);
+        log.info("all cnt {}", all.size());
         for (AgencyInfo entity : all) {
             String info = CipherUtil.desDecrypt(entity.getInformation());
             entity.setInformation(CipherUtil.aesEncrypt(info));
