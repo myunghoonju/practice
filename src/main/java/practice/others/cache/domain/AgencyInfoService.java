@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.others.cache.domain.model.AgencyDto;
+import practice.others.cache.domain.model.UpdateAgencyInfoDto;
 import practice.others.secret.encryption.CipherUtil;
 
 import javax.persistence.EntityManager;
@@ -25,7 +26,7 @@ public class AgencyInfoService {
     }
 
     @Transactional
-    public void encrpytSaving(int id, AgencyDto agencyDto) throws Exception {
+    public void encryptSaving(int id, AgencyDto agencyDto) throws Exception {
         AgencyInfo entity = AgencyInfo.builder()
                 .agencyCd("test" + "-"  + id + "-" + agencyDto.getInformation())
                 .information(agencyDto.getEncInfo())

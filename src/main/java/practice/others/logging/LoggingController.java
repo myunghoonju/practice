@@ -29,7 +29,7 @@ public class LoggingController {
             AgencyDto dto = AgencyDto.builder()
                     .information(uuid)
                     .build();
-            service.encrpytSaving(i, dto);
+            service.encryptSaving(i, dto);
         }
         return ResponseEntity.ok().body(HttpStatus.OK.toString());
     }
