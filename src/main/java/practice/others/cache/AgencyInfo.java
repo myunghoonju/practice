@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
-import practice.others.cache.Converters;
 import practice.others.cache.domain.time.BaseTime;
 
 import javax.persistence.Column;
