@@ -33,11 +33,11 @@ public class CipherUtil {
     private static byte[] aesIvBytes = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     public static String aesEncrypt(String str) throws NoSuchPaddingException,
-            NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException,
-            InvalidKeyException,
-            IllegalBlockSizeException,
-            BadPaddingException {
+                                                       NoSuchAlgorithmException,
+                                                       InvalidAlgorithmParameterException,
+                                                       InvalidKeyException,
+                                                       IllegalBlockSizeException,
+                                                       BadPaddingException {
         byte[] keyBytes = AESKEY.getBytes(CHARSET_UTF_8);
         byte[] content = str.getBytes(CHARSET_UTF_8);
 

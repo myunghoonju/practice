@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import practice.others.cache.domain.AgencyInfoService;
+import practice.others.cache.AgencyInfoService;
 import practice.others.cache.domain.model.AgencyDto;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;

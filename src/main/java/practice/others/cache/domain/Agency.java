@@ -1,4 +1,4 @@
-package practice.others.cache.domain.model;
+package practice.others.cache.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import practice.others.cache.domain.AgencyInfo;
+import practice.others.cache.AgencyInfo;
 
 import java.util.Map;
 

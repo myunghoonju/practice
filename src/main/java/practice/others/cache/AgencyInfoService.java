@@ -1,15 +1,15 @@
-package practice.others.cache.domain;
+package practice.others.cache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.others.cache.domain.model.AgencyDto;
-import practice.others.secret.encryption.CipherUtil;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
+import java.util.UUID;
 
 
 @Slf4j
@@ -28,7 +28,7 @@ public class AgencyInfoService {
     public void encryptSaving(int id, AgencyDto agencyDto) throws Exception {
         AgencyInfo entity = AgencyInfo.builder()
                 .agencyCd("test" + "-"  + id + "-" + agencyDto.getInformation())
-                .information(agencyDto.getEncInfo())
+                .information(agencyDto.getInformation())
                 .build();
 
         repository.save(entity);
@@ -37,13 +37,13 @@ public class AgencyInfoService {
     @Transactional
     public void reEncryptSaving() throws Exception {
         LocalDateTime created = LocalDateTime.of(2023, Month.MARCH, 3, 17, 20, 0);
-        LocalDateTime modified = LocalDateTime.of(2023, Month.MARCH, 9, 17, 20, 0);
+        LocalDateTime modified = LocalDateTime.of(2023, Month.MARCH, 19, 17, 20, 0);
         List<AgencyInfo> all = repository.findByCreatedDateGreaterThanAndModifiedDateLessThan(created, modified);
-        log.info("all cnt {}", all.size());
+
         for (AgencyInfo entity : all) {
-            String info = CipherUtil.desDecrypt(entity.getInformation());
-            entity.setInformation(CipherUtil.aesEncrypt(info));
-            log.info("id {}, info {}", entity.getAgencyCd(), info);
+            log.info("all cnt {}", all.size());
+            entity.setAgencyCd("a" + UUID.randomUUID());
+            entity.setInformation(UUID.randomUUID().toString());
         }
     }
 }

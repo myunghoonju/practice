@@ -1,4 +1,4 @@
-package practice.others.cache.domain;
+package practice.others.cache;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
