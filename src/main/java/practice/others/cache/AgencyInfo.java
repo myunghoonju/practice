@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
+import practice.others.cache.domain.OtherColumns;
 import practice.others.cache.domain.time.BaseTime;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,16 +30,21 @@ public class AgencyInfo extends BaseTime {
     private Long id;
 
     @Convert(converter = Converters.InfoConverter.class)
-    @Column(columnDefinition = "varchar(100) not null comment 'agency identifier'")
+    @Column(name = "agency_cd", columnDefinition = "varchar(100) not null comment 'agency identifier'")
     private String agencyCd;
 
     @Convert(converter = Converters.CryptoConverter.class)
     @Column(columnDefinition = "varchar(1000) null")
     private String information;
 
+    @Embedded
+    @Convert(converter = Converters.OtherConverter.class, attributeName = "other_column")
+    private OtherColumns otherColumns;
+
     @Builder
-    public AgencyInfo(String agencyCd, String information) {
+    public AgencyInfo(String agencyCd, String information, OtherColumns otherColumns) {
         this.agencyCd = agencyCd;
         this.information = information;
+        this.otherColumns = otherColumns;
     }
 }
