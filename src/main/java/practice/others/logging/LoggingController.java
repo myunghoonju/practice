@@ -46,7 +46,7 @@ public class LoggingController {
         HashMap<String, String> header = new HashMap<>();
         header.put("authorization", token);
 
-        UserApiService userApiService = RetrofitService.getCli()
+        UserApiService userApiService = RetrofitService.getCli("http://httpstat.us/401/")
                                                        .create(UserApiService.class);
         Object body = userApiService.getUserPost(header, 1)
                                     .execute()

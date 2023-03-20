@@ -1,10 +1,11 @@
-package practice.others.cache;
+package practice.others.cache.domain.agencyInfo;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
+import practice.others.cache.Converters;
 import practice.others.cache.domain.OtherColumns;
 import practice.others.cache.domain.time.BaseTime;
 

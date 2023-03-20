@@ -4,13 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.others.cache.domain.OtherColumns;
+import practice.others.cache.domain.agencyInfo.AgencyInfo;
+import practice.others.cache.domain.agencyInfo.AgencyInfoRepository;
 import practice.others.cache.domain.model.AgencyDto;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 

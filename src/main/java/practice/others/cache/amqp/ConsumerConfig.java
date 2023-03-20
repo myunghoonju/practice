@@ -1,16 +1,24 @@
 package practice.others.cache.amqp;
 
-import com.rabbitmq.client.AMQP;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Declarable;
+import org.springframework.amqp.core.Declarables;
+import org.springframework.amqp.core.ExchangeBuilder;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.UUID;
 
 import static org.springframework.amqp.rabbit.connection.CachingConnectionFactory.ConfirmType.SIMPLE;
 
@@ -19,7 +27,7 @@ import static org.springframework.amqp.rabbit.connection.CachingConnectionFactor
 public class ConsumerConfig {
 
     @Bean
-    public ConnectionFactory firstConnection() {
+    public ConnectionFactory rabbitCon() {
         CachingConnectionFactory conn = new CachingConnectionFactory();
         conn.setHost("localhost");
         conn.setPort(5672);
@@ -30,8 +38,8 @@ public class ConsumerConfig {
     }
 
     @Bean
-    public RabbitTemplate firstRabbit() {
-        RabbitTemplate firstRabbit = new RabbitTemplate(firstConnection());
+    public RabbitTemplate rabbitTemplate() {
+        RabbitTemplate firstRabbit = new RabbitTemplate(rabbitCon());
         firstRabbit.setMessageConverter(converter());
 
         return firstRabbit;
@@ -42,4 +50,38 @@ public class ConsumerConfig {
         return new Jackson2JsonMessageConverter();
     }
 
+    @Bean
+    public AmqpAdmin rabbitAmqpAdmin() {
+        return new RabbitAdmin(rabbitTemplate());
+    }
+
+    /** blockingQueue */
+    @Bean
+    public Queue blockingQueue() {
+        return QueueBuilder.durable(UUID.randomUUID().toString()).quorum().build();
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchange(AmqpAdmin rabbitAmqpAdmin) {
+        FanoutExchange fanoutExchange = ExchangeBuilder.fanoutExchange("x.test-fanout").build();
+        fanoutExchange.setAdminsThatShouldDeclare(rabbitAmqpAdmin);
+
+        return fanoutExchange;
+    }
+
+    @Bean
+    public Declarables fanoutBindings(AmqpAdmin rabbitAmqpAdmin,
+                                      Queue blockingQueue,
+                                      FanoutExchange fanoutExchange) {
+        return new Declarables(getDeclarable(rabbitAmqpAdmin, blockingQueue, fanoutExchange));
+    }
+
+    private Declarable getDeclarable(AmqpAdmin amqpAdmin,
+                                     Queue queue,
+                                     FanoutExchange exchange) {
+        Binding binding = BindingBuilder.bind(queue).to(exchange);
+        binding.setAdminsThatShouldDeclare(amqpAdmin);
+
+        return binding;
+    }
 }

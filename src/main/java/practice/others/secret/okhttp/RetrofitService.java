@@ -1,5 +1,7 @@
 package practice.others.secret.okhttp;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,15 +20,16 @@ public class RetrofitService {
                 .build();
     }
 
-    public static Retrofit getCli() {
-        return new RetrofitService().createCli();
+    public static Retrofit getCli(String url) {
+        return new RetrofitService().createCli(url);
     }
 
 
-    private Retrofit createCli() {
+    private Retrofit createCli(String url) {
+        Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()
-                .baseUrl("http://httpstat.us/401/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
     }

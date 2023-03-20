@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import practice.others.cache.AgencyInfo;
+import practice.others.cache.domain.agencyInfo.AgencyInfo;
 
 import java.util.Map;
 
