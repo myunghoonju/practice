@@ -25,6 +25,7 @@ public class Consumer implements DisposableBean {
 
     private static String test = "";
 
+    //FIXME:: replace with @PreDestroy~
     @Override
     public void destroy() {
         log.warn("delete queue:: {}", blockingQueue.getName());
