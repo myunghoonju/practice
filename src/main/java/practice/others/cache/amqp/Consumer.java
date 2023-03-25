@@ -38,7 +38,7 @@ public class Consumer implements DisposableBean {
     public void consumeBlocking(String payload) throws Exception {
         log.info("Processing message from blocking-queue: {}", payload);
         test = payload;
-        throw new Exception("exception occured!");
+        throw new Exception("exception occurred!");
     }
 
     public static void initialPush() throws Exception {
