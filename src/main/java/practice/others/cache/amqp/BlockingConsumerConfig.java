@@ -15,6 +15,7 @@ import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.interceptor.RetryOperationsInterceptor;
@@ -42,6 +43,8 @@ public class BlockingConsumerConfig {
 
         Advice[] adviceChain = { retryInterceptor };
         factory.setAdviceChain(adviceChain);
+        factory.setAutoStartup(true);
+        factory.setMessageConverter(new Jackson2JsonMessageConverter());
 
         return factory;
     }

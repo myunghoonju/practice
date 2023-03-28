@@ -4,56 +4,56 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueInformation;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import practice.others.cache.UserCacheWrapper;
 import practice.others.secret.okhttp.MybootApiService;
 import practice.others.secret.okhttp.RetrofitService;
 
+import javax.annotation.PreDestroy;
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class Consumer implements DisposableBean {
+public class Consumer {
 
-    private final UserCacheWrapper userCacheWrapper;
-    private final AmqpAdmin rabbitAmqpAdmin;
     private final Queue blockingQueue;
+    private final AmqpAdmin rabbitAmqpAdmin;
     private final RabbitTemplate rabbitTemplate;
+    private final UserCacheWrapper userCacheWrapper;
 
-    private static String test = "";
-
-    //FIXME:: replace with @PreDestroy~
-    @Override
+    @PreDestroy
     public void destroy() {
         log.warn("delete queue:: {}", blockingQueue.getName());
         rabbitAmqpAdmin.deleteQueue(blockingQueue.getName());
     }
 
     @RabbitListener(queues = "#{blockingQueue.getName()}",
-                    containerFactory = "retryContainerFactory",
-                    autoStartup = "true")
-    public void consumeBlocking(String payload) throws Exception {
-        log.info("Processing message from blocking-queue: {}", payload);
-        test = payload;
-        throw new Exception("exception occurred!");
+                    containerFactory = "retryContainerFactory")
+    public void consumeBlocking(List<PayLoad> payload) {
+        payload.forEach(payLoad -> {
+            log.info("name: {}", payLoad.getName());
+            payLoad.getList().forEach(li -> log.info("list {}", li));
+        });
+        log.info("=============================================================");
+        queueInfo();
+        log.info("======================================================================");
     }
 
     public static void initialPush() throws Exception {
         MybootApiService mybootApiService = RetrofitService.getCli("http://localhost:8085/")
-                .create(MybootApiService.class);
-
+                                                           .create(MybootApiService.class);
         mybootApiService.push().execute();
         log.info("my-boot push");
     }
 
-    //@Scheduled(cron = "0 */1 * * * *")
-    public void receive() {
-        if (!StringUtils.hasText(test)) {
-            String receive = (String) rabbitTemplate.receiveAndConvert(blockingQueue.getName());
-            log.info("received from method:: {}", receive);
+    public void queueInfo() {
+        QueueInformation queueInfo = rabbitAmqpAdmin.getQueueInfo(blockingQueue.getName());
+        if (queueInfo != null) {
+            log.info(queueInfo.toString());
         }
     }
 }
