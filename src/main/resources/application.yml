@@ -14,7 +14,7 @@ spring:
       username: local_oracle
       password: local_oracle
 
-
+# TODO:: ddl-auto not working
   jpa:
     mysql:
       database-platform: org.hibernate.dialect.MySQL8Dialect
