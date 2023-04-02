@@ -2,9 +2,9 @@ package practice.others.cache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import practice.others.cache.domain.Agency;
-import practice.others.cache.domain.agencyInfo.AgencyInfo;
-import practice.others.cache.domain.agencyInfo.AgencyInfoRepository;
+import practice.others.multipleDb.domain.Agency;
+import practice.others.multipleDb.domain.info.AgencyInfo;
+import practice.others.multipleDb.domain.info.AgencyInfoRepository;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;

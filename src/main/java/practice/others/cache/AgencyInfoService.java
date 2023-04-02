@@ -3,10 +3,10 @@ package practice.others.cache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import practice.others.cache.domain.OtherColumns;
-import practice.others.cache.domain.agencyInfo.AgencyInfo;
-import practice.others.cache.domain.agencyInfo.AgencyInfoRepository;
-import practice.others.cache.domain.model.AgencyDto;
+import practice.others.multipleDb.domain.OtherColumns;
+import practice.others.multipleDb.domain.info.AgencyInfo;
+import practice.others.multipleDb.domain.info.AgencyInfoRepository;
+import practice.others.multipleDb.domain.model.AgencyDto;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;

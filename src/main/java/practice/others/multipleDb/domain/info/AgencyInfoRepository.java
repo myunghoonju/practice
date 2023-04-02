@@ -1,4 +1,4 @@
-package practice.others.cache.domain.agencyInfo;
+package practice.others.multipleDb.domain.info;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

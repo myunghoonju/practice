@@ -1,4 +1,4 @@
-package practice.others.cache.domain.time;
+package practice.others.multipleDb.domain.time;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

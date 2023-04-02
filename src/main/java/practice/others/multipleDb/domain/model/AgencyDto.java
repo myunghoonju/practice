@@ -1,4 +1,4 @@
-package practice.others.cache.domain.model;
+package practice.others.multipleDb.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;

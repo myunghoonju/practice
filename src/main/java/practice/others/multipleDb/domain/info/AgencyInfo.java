@@ -1,4 +1,4 @@
-package practice.others.cache.domain.agencyInfo;
+package practice.others.multipleDb.domain.info;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 import practice.others.cache.Converters;
-import practice.others.cache.domain.OtherColumns;
-import practice.others.cache.domain.time.BaseTime;
+import practice.others.multipleDb.domain.OtherColumns;
+import practice.others.multipleDb.domain.time.BaseTime;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;

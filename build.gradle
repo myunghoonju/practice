@@ -57,6 +57,7 @@ dependencies {
     //TODO:: get to know it.
     implementation("com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}")
     implementation('mysql:mysql-connector-java')
+    implementation('com.oracle.database.jdbc:ojdbc6:11.2.0.4')
 
     runtimeOnly('com.h2database:h2')
     compileOnly('org.projectlombok:lombok')

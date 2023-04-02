@@ -9,7 +9,7 @@ import org.ehcache.event.EventType;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import practice.others.cache.domain.Agency;
+import practice.others.multipleDb.domain.Agency;
 
 import javax.cache.CacheManager;
 import javax.cache.Caching;

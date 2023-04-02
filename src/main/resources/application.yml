@@ -3,19 +3,33 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/example?serverTimezone=UTC&characterEncoding=UTF-8
-    username: local_rdb_master
-    password: local_rdb
+    mysql:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/example?serverTimezone=UTC&characterEncoding=UTF-8
+      username: local_rdb_master
+      password: local_rdb
+    oracle:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:orcl/LOCAL_ORACLE
+      username: local_oracle
+      password: local_oracle
+
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    hibernate:
-      ddl-auto: create-drop
-
+    mysql:
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      hibernate:
+        ddl-auto: create-drop
+    oracle:
+      database-platform: org.hibernate.dialect.Oracle10gDialect
+      hibernate:
+        ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
+
+hibernate:
+  ddl-auto: create-drop
 
 logging.level:
   org.hibernate.SQL: debug

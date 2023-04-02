@@ -1,14 +1,10 @@
 package practice.others.cache;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.ObjectUtils;
-import practice.others.cache.domain.OtherColumns;
+import practice.others.multipleDb.domain.OtherColumns;
 
-import javax.annotation.Nullable;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import javax.print.attribute.standard.MediaSize;
-import java.util.UUID;
 
 @Slf4j
 public class Converters {
