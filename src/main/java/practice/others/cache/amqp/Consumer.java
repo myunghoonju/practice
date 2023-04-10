@@ -6,9 +6,7 @@ import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueInformation;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
-import practice.others.cache.UserCacheWrapper;
 import practice.others.secret.okhttp.MybootApiService;
 import practice.others.secret.okhttp.RetrofitService;
 
@@ -22,8 +20,6 @@ public class Consumer {
 
     private final Queue blockingQueue;
     private final AmqpAdmin rabbitAmqpAdmin;
-    private final RabbitTemplate rabbitTemplate;
-    private final UserCacheWrapper userCacheWrapper;
 
     @PreDestroy
     public void destroy() {
@@ -38,9 +34,6 @@ public class Consumer {
             log.info("name: {}", payLoad.getName());
             payLoad.getList().forEach(li -> log.info("list {}", li));
         });
-        log.info("=============================================================");
-        queueInfo();
-        log.info("======================================================================");
     }
 
     public static void initialPush() throws Exception {
