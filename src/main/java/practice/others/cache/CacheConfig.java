@@ -6,6 +6,7 @@ import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheEventListenerConfigurationBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.event.EventType;
+import org.ehcache.expiry.ExpiryPolicy;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ public class CacheConfig {
 
         CacheConfiguration<String, String> config = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class, pool)
                                                                              .withService(listenerConfig)
+                                                                             .withExpiry(ExpiryPolicy.NO_EXPIRY)
                                                                              .build();
 
         CacheConfiguration<String, Agency> agencyConfig = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, Agency.class, pool)
