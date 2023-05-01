@@ -10,12 +10,18 @@ spring:
       password: local_rdb
     oracle:
       driver-class-name: oracle.jdbc.OracleDriver
-      url: jdbc:oracle:thin:@localhost:1521:orcl/LOCAL_ORACLE
+      url: jdbc:oracle:thin:@localhost:1521/orcl
       username: local_oracle
       password: local_oracle
 
+  sql:
+    init:
+      platform: true
+      mode: always
+
 # TODO:: ddl-auto not working
   jpa:
+    defer-datasource-initialization: true
     mysql:
       database-platform: org.hibernate.dialect.MySQL8Dialect
       hibernate:
@@ -23,13 +29,10 @@ spring:
     oracle:
       database-platform: org.hibernate.dialect.Oracle10gDialect
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: none
     properties:
       hibernate:
         format_sql: true
-
-hibernate:
-  ddl-auto: create-drop
 
 logging.level:
   org.hibernate.SQL: debug
