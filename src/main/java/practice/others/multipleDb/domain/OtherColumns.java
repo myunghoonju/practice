@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 public class OtherColumns {
 
-    @Column(name = "other_column", columnDefinition = "varchar(1000) null")
+    @Column(name = "OTHER_COLUMN", columnDefinition = "varchar(1000) null")
     private String otherColumn;
 
     @Builder

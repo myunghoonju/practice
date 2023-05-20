@@ -1,12 +1,13 @@
-package practice.others.logging;
+package practice.others;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import practice.others.cache.AgencyInfoService;
+import practice.others.cache.model.AgencyInfoDto;
+import practice.others.multipleDb.domain.info.AgencyInfo;
 import practice.others.multipleDb.domain.model.AgencyDto;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;
@@ -18,20 +19,20 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class LoggingController {
+public class ApiController {
 
     private final AgencyInfoService service;
 
-    @GetMapping("/log")
-    public ResponseEntity<String> log() throws Exception {
-        for (int i = 0; i < 10; i++) {
-            String uuid = UUID.randomUUID().toString();
-            AgencyDto dto = AgencyDto.builder()
-                    .information(uuid)
-                    .build();
-            service.encryptSaving(i, dto);
-        }
-        return ResponseEntity.ok().body(HttpStatus.OK.toString());
+    @PostMapping("/info")
+    public ResponseEntity<String> saveInfo(@RequestBody AgencyInfoDto dto) throws Exception {
+        String agyCd = service.save(dto);
+        return ResponseEntity.ok().body(agyCd);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<String> getInfo(@RequestParam String agyCd) {
+        AgencyInfo agencyInfo = service.get(agyCd);
+        return ResponseEntity.ok().body(agencyInfo.toString());
     }
 
     @GetMapping("/log2")

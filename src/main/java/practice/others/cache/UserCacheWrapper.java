@@ -3,7 +3,6 @@ package practice.others.cache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import practice.others.multipleDb.domain.Agency;
-import practice.others.multipleDb.domain.info.AgencyInfo;
 import practice.others.multipleDb.domain.info.AgencyInfoRepository;
 
 import javax.cache.Cache;
@@ -43,27 +42,4 @@ public class UserCacheWrapper {
         userA.put(key, value);
         userB.put(key, value);
     }
-
-    public void setAgencyCache() {
-        try {
-            AgencyInfo agencyInfo = agencyInfoRepository.findByAgencyCd("TEST");
-            Agency agency = new Agency();
-            agency.test(agencyInfo);
-            agencyCache.put(agencyInfo.getAgencyCd(), agency);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-   /* @PostConstruct
-    void init() {
-        String agency = "TEST";
-        String info = "{ \"url\": { \"base\": \"https://api.happycrew.co.kr\", \"deposit\": \"/pos/foodTech/search/point\", \"fee\": \"/pos/foodTech/search/distance\", \"request\": \"/pos/foodTech/delivery/insert\", \"update\": \"/pos/foodTech/delivery/modify\", \"cancel\": \"/pos/foodTech/delivery/cancel\" }, \"header\": { \"X-CLIENT-TOKEN\": \"f5653057f739b4b8fa606f4dc0d326d5a24345f3a866cb5778511807f6b7ac9c\", \"Content-Type\": \"application/json; charset=UTF-8\" } }";
-        AgencyInfo agencyInfo = AgencyInfo.builder()
-                                          .agencyCd(agency)
-                                          .information(info)
-                                          .build();
-        agencyInfoRepository.save(agencyInfo);
-    }*/
 }

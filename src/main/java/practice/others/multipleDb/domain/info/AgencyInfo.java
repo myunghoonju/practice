@@ -1,9 +1,6 @@
 package practice.others.multipleDb.domain.info;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import practice.others.cache.Converters;
 import practice.others.multipleDb.domain.OtherColumns;
@@ -18,7 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@ToString
 @DynamicUpdate
 @Getter
 @Setter
@@ -28,22 +25,24 @@ import javax.persistence.Table;
 public class AgencyInfo extends BaseTime {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
-    @Convert(converter = Converters.InfoConverter.class)
-    @Column(name = "agency_cd", columnDefinition = "varchar(100) not null comment 'agency identifier'")
+    @Column(name = "AGENCY_CD", columnDefinition = "VARCHAR(100) NOT NULL COMMENT 'agency identifier'")
     private String agencyCd;
 
-    @Convert(converter = Converters.CryptoConverter.class)
-    @Column(columnDefinition = "varchar(1000) null")
-    private String information;
+    @Convert(converter = Converters.JsonConverter.class)
+    @Column(name = "INFORMATION", columnDefinition = "JSON")
+    private Information information;
 
     @Embedded
     @Convert(converter = Converters.OtherConverter.class, attributeName = "other_column")
     private OtherColumns otherColumns;
 
     @Builder
-    public AgencyInfo(String agencyCd, String information, OtherColumns otherColumns) {
+    public AgencyInfo(String agencyCd,
+                      Information information,
+                      OtherColumns otherColumns) {
         this.agencyCd = agencyCd;
         this.information = information;
         this.otherColumns = otherColumns;

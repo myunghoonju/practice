@@ -17,6 +17,5 @@ public class Scheduler {
 
     //@Scheduled(cron = "0 */1 * * * *")
     public void mytask() {
-        userCacheWrapper.setAgencyCache();
     }
 }
