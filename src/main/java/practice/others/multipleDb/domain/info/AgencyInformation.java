@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "AGENCY_INFO")
 @Entity
-public class AgencyInfo extends BaseTime {
+public class AgencyInformation extends BaseTime {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -40,9 +40,9 @@ public class AgencyInfo extends BaseTime {
     private OtherColumns otherColumns;
 
     @Builder
-    public AgencyInfo(String agencyCd,
-                      Information information,
-                      OtherColumns otherColumns) {
+    public AgencyInformation(String agencyCd,
+                             Information information,
+                             OtherColumns otherColumns) {
         this.agencyCd = agencyCd;
         this.information = information;
         this.otherColumns = otherColumns;

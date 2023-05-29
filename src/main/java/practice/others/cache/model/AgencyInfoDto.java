@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import practice.others.multipleDb.domain.info.AgencyInfo;
+import practice.others.multipleDb.domain.info.AgencyInformation;
 import practice.others.multipleDb.domain.info.Information;
 
 import java.util.Map;
@@ -45,7 +45,7 @@ public class AgencyInfoDto {
         }
     }
 
-    public static AgencyInfo toEntity(AgencyInfoDto dto) {
+    public static AgencyInformation toEntity(AgencyInfoDto dto) {
         Information.Url url = Information.Url.builder()
                 .base(dto.url.getBase())
                 .deposit(dto.url.getDeposit())
@@ -59,7 +59,7 @@ public class AgencyInfoDto {
                 .header(dto.getHeader())
                 .build();
 
-        return AgencyInfo.builder().agencyCd(UUID.randomUUID().toString())
+        return AgencyInformation.builder().agencyCd(UUID.randomUUID().toString())
                 .information(info)
                 .build();
     }

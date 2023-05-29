@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface AgencyInfoRepository extends JpaRepository<AgencyInfo, Long> {
+public interface AgencyInfoRepository extends JpaRepository<AgencyInformation, Long> {
 
-    AgencyInfo findByAgencyCd(String agencyCd);
-    List<AgencyInfo> findByCreatedDateGreaterThanAndModifiedDateLessThan(LocalDateTime a, LocalDateTime b);
+    AgencyInformation findByAgencyCd(String agencyCd);
+    List<AgencyInformation> findByCreatedDateGreaterThanAndModifiedDateLessThan(LocalDateTime a, LocalDateTime b);
 }

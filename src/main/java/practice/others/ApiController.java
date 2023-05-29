@@ -7,14 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import practice.others.cache.AgencyInfoService;
 import practice.others.cache.model.AgencyInfoDto;
-import practice.others.multipleDb.domain.info.AgencyInfo;
-import practice.others.multipleDb.domain.model.AgencyDto;
+import practice.others.multipleDb.domain.info.AgencyInformation;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;
 import practice.others.secret.okhttp.UserApiService;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -31,8 +29,8 @@ public class ApiController {
 
     @GetMapping("/info")
     public ResponseEntity<String> getInfo(@RequestParam String agyCd) {
-        AgencyInfo agencyInfo = service.get(agyCd);
-        return ResponseEntity.ok().body(agencyInfo.toString());
+        AgencyInformation agencyInformation = service.get(agyCd);
+        return ResponseEntity.ok().body(agencyInformation.toString());
     }
 
     @GetMapping("/log2")
