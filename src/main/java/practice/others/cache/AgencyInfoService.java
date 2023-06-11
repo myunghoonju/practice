@@ -1,10 +1,12 @@
 package practice.others.cache;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.others.cache.model.AgencyInfoDto;
+import practice.others.cache.model.UserCache;
 import practice.others.multipleDb.domain.OtherColumns;
 import practice.others.multipleDb.domain.info.AgencyInfo;
 import practice.others.multipleDb.domain.info.AgencyInfoRepository;
@@ -20,17 +22,14 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AgencyInfoService {
 
     private final AgencyInfoRepository repository;
     private final EntityManager entityManager;
+    private final UserCacheWrapper cacheWrapper;
 
     private final ObjectMapper mapper = new ObjectMapper();
-
-    public AgencyInfoService(AgencyInfoRepository repository, EntityManager entityManager) {
-        this.repository = repository;
-        this.entityManager = entityManager;
-    }
 
     public String save(AgencyInfoDto dto) {
         AgencyInfo entity = AgencyInfoDto.toEntity(dto);
@@ -41,6 +40,10 @@ public class AgencyInfoService {
 
     public AgencyInfo get(String agyCd) {
         return repository.findByAgencyCd(agyCd);
+    }
+
+    public void putUserCache(UserCache content) {
+        cacheWrapper.putUserCache(content.getKey(), content);
     }
 
     @Transactional

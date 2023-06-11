@@ -10,6 +10,7 @@ import org.ehcache.expiry.ExpiryPolicy;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import practice.others.cache.model.UserCache;
 import practice.others.multipleDb.domain.Agency;
 
 import javax.cache.CacheManager;
@@ -24,26 +25,27 @@ public class CacheConfig {
     public CacheManager userCacheManager() {
         CachingProvider cachingProvider = Caching.getCachingProvider();
         CacheManager cacheManager = cachingProvider.getCacheManager();
-        ResourcePools pool = ResourcePoolsBuilder.heap(1000).build();
+        ResourcePools pool = ResourcePoolsBuilder.heap(10).build();
 
-        CacheEventListenerConfigurationBuilder listenerConfig = CacheEventListenerConfigurationBuilder
-                .newEventListenerConfiguration(new CacheListener(), EventType.CREATED, EventType.UPDATED)
-                .unordered().asynchronous();
+        CacheEventListenerConfigurationBuilder listenerConfig = CacheEventListenerConfigurationBuilder.newEventListenerConfiguration(new CacheListener(),
+                                                                                                                                     EventType.CREATED,
+                                                                                                                                     EventType.UPDATED)
+                                                                                                      .unordered()
+                                                                                                      .asynchronous();
 
-        CacheConfiguration<String, String> config = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class, pool)
-                                                                             .withService(listenerConfig)
-                                                                             .withExpiry(ExpiryPolicy.NO_EXPIRY)
-                                                                             .build();
+        CacheConfiguration<String, UserCache> config = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, UserCache.class, pool)
+                                                                                .withService(listenerConfig)
+                                                                                .withExpiry(ExpiryPolicy.NO_EXPIRY)
+                                                                                .build();
 
         CacheConfiguration<String, Agency> agencyConfig = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, Agency.class, pool)
-                                                                             .withService(listenerConfig)
-                                                                             .build();
+                                                                                   .withService(listenerConfig)
+                                                                                   .build();
 
-        Configuration<String, String> configuration = Eh107Configuration.fromEhcacheCacheConfiguration(config);
+        Configuration<String, UserCache> configuration = Eh107Configuration.fromEhcacheCacheConfiguration(config);
         Configuration<String, Agency> agencyconfiguration = Eh107Configuration.fromEhcacheCacheConfiguration(agencyConfig);
 
-        cacheManager.createCache("userA", configuration);
-        cacheManager.createCache("userB", configuration);
+        cacheManager.createCache("user", configuration);
         cacheManager.createCache("agencyCache", agencyconfiguration);
 
         return cacheManager;

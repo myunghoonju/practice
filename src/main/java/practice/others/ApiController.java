@@ -7,14 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import practice.others.cache.AgencyInfoService;
 import practice.others.cache.model.AgencyInfoDto;
+import practice.others.cache.model.UserCache;
 import practice.others.multipleDb.domain.info.AgencyInfo;
-import practice.others.multipleDb.domain.model.AgencyDto;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;
 import practice.others.secret.okhttp.UserApiService;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -27,6 +26,12 @@ public class ApiController {
     public ResponseEntity<String> saveInfo(@RequestBody AgencyInfoDto dto) throws Exception {
         String agyCd = service.save(dto);
         return ResponseEntity.ok().body(agyCd);
+    }
+
+    @PostMapping("/caching/user")
+    public ResponseEntity<UserCache> putUserACache(@RequestBody UserCache content) {
+        service.putUserCache(content);
+        return ResponseEntity.ok().body(content);
     }
 
     @GetMapping("/info")
