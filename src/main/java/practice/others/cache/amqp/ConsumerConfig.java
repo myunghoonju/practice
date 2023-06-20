@@ -41,6 +41,7 @@ public class ConsumerConfig {
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate firstRabbit = new RabbitTemplate(rabbitCon());
         firstRabbit.setMessageConverter(converter());
+        firstRabbit.setReceiveTimeout(1000);
 
         return firstRabbit;
     }

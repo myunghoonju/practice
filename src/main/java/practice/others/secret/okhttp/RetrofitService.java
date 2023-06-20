@@ -26,7 +26,7 @@ public class RetrofitService {
 
 
     private Retrofit createCli(String url) {
-        Gson gson = new GsonBuilder().setLenient().create();
+        Gson gson = new GsonBuilder().serializeNulls().create();
         return new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))

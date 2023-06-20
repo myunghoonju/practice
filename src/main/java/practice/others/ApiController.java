@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import practice.others.cache.AgencyInfoService;
 import practice.others.cache.model.AgencyInfoDto;
+import practice.others.cache.model.TestModel;
 import practice.others.cache.model.UserCache;
 import practice.others.multipleDb.domain.info.AgencyInfo;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;
-import practice.others.secret.okhttp.UserApiService;
+import practice.others.secret.okhttp.MockApiService;
+import retrofit2.Response;
 
 import java.util.HashMap;
 
@@ -46,17 +48,17 @@ public class ApiController {
         return ResponseEntity.ok().body(HttpStatus.OK.toString());
     }
 
-    @GetMapping("/mock")
-    public ResponseEntity<Object> mockApi() throws Exception {
+    @GetMapping("/mock/test")
+    public ResponseEntity<String> mockApi() throws Exception {
         String token = TokenGenerator.getToken();
         HashMap<String, String> header = new HashMap<>();
         header.put("authorization", token);
 
-        UserApiService userApiService = RetrofitService.getCli("http://httpstat.us/401/")
-                                                       .create(UserApiService.class);
-        Object body = userApiService.getUserPost(header, 1)
-                                    .execute()
-                                    .body();
-        return ResponseEntity.ok().body(body);
+        TestModel testModel = TestModel.builder().key("key").build();
+        MockApiService mockApiService = RetrofitService.getCli("http://localhost:8085")
+                                                       .create(MockApiService.class);
+
+        Response<TestModel> execute = mockApiService.mockPost(header, testModel).execute();
+        return ResponseEntity.ok().body("body");
     }
 }
