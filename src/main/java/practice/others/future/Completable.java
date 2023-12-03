@@ -1,7 +1,8 @@
 package practice.others.future;
 
 import java.util.concurrent.CompletableFuture;
-
+// https://medium.com/javarevisited/exception-handling-with-java-completablefuture-in-spring-boot-256ed4ad877f
+// https://mincong.io/2020/05/30/exception-handling-in-completable-future/
 public class Completable {
 
     public Integer generousMethod() throws Exception {
