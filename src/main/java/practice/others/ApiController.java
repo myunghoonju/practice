@@ -1,7 +1,26 @@
 package practice.others;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ApiController {
+
+    @GetMapping("/yesterday")
+    public String test(@RequestParam("date")
+                       @DateTimeFormat(pattern = "yyyy-MM-dd")
+                       LocalDate localDate) {
+        return localDate.minusDays(1L).toString();
+    }
+}
+/*
+
+import java.util.HashMap;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +32,7 @@ import practice.others.multipleDb.domain.info.AgencyInfo;
 import practice.others.secret.TokenGenerator;
 import practice.others.secret.okhttp.RetrofitService;
 import practice.others.secret.okhttp.MockApiService;
+import practice.others.secret.okhttp.RetrofitService;
 import retrofit2.Response;
 
 import java.util.HashMap;
@@ -62,3 +82,4 @@ public class ApiController {
         return ResponseEntity.ok().body("body");
     }
 }
+*/
