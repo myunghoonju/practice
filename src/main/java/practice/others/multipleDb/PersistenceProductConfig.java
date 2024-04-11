@@ -41,6 +41,7 @@ public class PersistenceProductConfig {
         properties.put("hibernate.ddl-auto", env.getProperty("hibernate.ddl-auto"));
         properties.put("hibernate.dialect", env.getProperty("spring.jpa.oracle.database-platform"));
         factoryBean.setJpaPropertyMap(properties);
+        factoryBean.setPersistenceUnitName("productPersistenceUnit");
         return factoryBean;
     }
 

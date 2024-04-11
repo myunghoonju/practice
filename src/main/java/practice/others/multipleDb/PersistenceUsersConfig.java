@@ -43,6 +43,7 @@ public class PersistenceUsersConfig {
         properties.put("hibernate.ddl-auto", env.getProperty("hibernate.ddl-auto"));
         properties.put("hibernate.dialect", env.getProperty("spring.jpa.mysql.database-platform"));
         factoryBean.setJpaPropertyMap(properties);
+        factoryBean.setPersistenceUnitName("usersPersistenceUnit");
         return factoryBean;
     }
 
