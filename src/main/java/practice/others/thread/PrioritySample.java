@@ -19,7 +19,7 @@ public class PrioritySample {
     }
 
     static class Count extends Thread {
-        private String name;
+        private final String name;
         private int cnt;
 
         public Count(String name, int priority) {
