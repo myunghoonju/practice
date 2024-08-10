@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.week2;
+package practice.algorithm.nossi;
 
 // 정렬문제는 대표적인 시간복잡도: nLog(n) https://leetcode.com/problems/two-sum/description/
 public class TwoSum {
