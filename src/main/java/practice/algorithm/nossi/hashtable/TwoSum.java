@@ -1,10 +1,10 @@
-package practice.algorithm.nossi;
+package practice.algorithm.nossi.hashtable;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSumHashMap {
+public class TwoSum {
 
     public static void main(String[] args) {
         int[] ints = new int[4];
