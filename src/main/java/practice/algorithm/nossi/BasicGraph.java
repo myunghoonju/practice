@@ -9,6 +9,7 @@ import java.util.Queue;
 public class BasicGraph {
 
   static Map<Integer, Boolean> visited = new HashMap<>();
+  static Map<Integer, Boolean> dfsVisited = new HashMap<>();
   static Map<Integer, List<Integer>> graph = new HashMap<>();
 
   static void bfs(int startVertex) {
@@ -29,6 +30,15 @@ public class BasicGraph {
     }
   }
 
+  static void dfs(int startVertex) {
+    dfsVisited.put(startVertex, true);
+    for (int nextVertex : graph.get(startVertex)) {
+      if (!dfsVisited.containsKey(nextVertex)) {
+        dfs(nextVertex);
+      }
+    }
+  }
+
   static void prepareGraph() {
     graph.put(0, List.of(1, 3, 6));
     graph.put(1, List.of(0, 3));
@@ -43,5 +53,6 @@ public class BasicGraph {
   public static void main(String[] args) {
     prepareGraph();
     bfs(0);
+    dfs(0);
   }
 }
