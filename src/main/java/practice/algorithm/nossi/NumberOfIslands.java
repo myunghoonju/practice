@@ -32,7 +32,7 @@ public class NumberOfIslands {
 
   // mark 9 as visited
   private void breadthFirstSearch(char[][] grid, int i, int j) {
-    Queue<Pair> queue = new ArrayDeque<>(List.of(new Pair(i, j)));
+    Queue<Pair> queue = new ArrayDeque<>(List.of(new Pair(i, j))); // use queue in bfs algorithm
     grid[i][j] = '9';
     while (!queue.isEmpty()) {
       int r = queue.peek().getKey();

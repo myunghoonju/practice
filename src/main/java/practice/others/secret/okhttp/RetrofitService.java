@@ -2,6 +2,7 @@ package practice.others.secret.okhttp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,6 +15,7 @@ public class RetrofitService {
 
     public RetrofitService() {
         this.okHttpClient = new OkHttpClient().newBuilder()
+                .connectionPool(new ConnectionPool(1, 1, TimeUnit.SECONDS))
                 .readTimeout(2L, TimeUnit.SECONDS)
                 .addInterceptor(new RetrofitInterceptor())
                 .authenticator(new AgencyAuthenticator())
