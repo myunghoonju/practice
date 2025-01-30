@@ -20,13 +20,13 @@ import java.time.Duration;
 public class RedisConfig {
 
   @Bean
-  public ValueOperations<Object, Object> ops() {
+  public ValueOperations<String, String> ops() {
     return template().opsForValue();
   }
 
   @Bean
-  public RedisTemplate<Object, Object> template() {
-    RedisTemplate<Object, Object> template = new RedisTemplate<>();
+  public RedisTemplate<String, String> template() {
+    RedisTemplate<String, String> template = new RedisTemplate<>();
     template.setConnectionFactory(redisConnectionFactory());
     template.setKeySerializer(new GenericJackson2JsonRedisSerializer());
     template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
