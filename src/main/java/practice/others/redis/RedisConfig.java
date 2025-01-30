@@ -1,4 +1,4 @@
-package practice.others;
+package practice.others.redis;
 
 import io.lettuce.core.TimeoutOptions;
 import io.lettuce.core.cluster.ClusterClientOptions;
