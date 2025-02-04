@@ -13,14 +13,14 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ApiController {
 
-  private final TemplateService service;
-
-    @GetMapping("/yesterday")
-    public String test(@RequestParam("date")
-                       @DateTimeFormat(pattern = "yyyy-MM-dd")
-                       LocalDate localDate) {
-      return localDate.minusDays(1L) +
-             " with redis test result: " +
-             service.test("test", "value");
-    }
+//  private final TemplateService service;
+//
+//    @GetMapping("/yesterday")
+//    public String test(@RequestParam("date")
+//                       @DateTimeFormat(pattern = "yyyy-MM-dd")
+//                       LocalDate localDate) {
+//      return localDate.minusDays(1L) +
+//             " with redis test result: " +
+//             service.test("test", "value");
+//    }
 }
