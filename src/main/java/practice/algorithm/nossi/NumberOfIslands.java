@@ -35,7 +35,7 @@ public class NumberOfIslands {
     Queue<Pair> queue = new ArrayDeque<>(List.of(new Pair(i, j))); // use queue in bfs algorithm
     grid[i][j] = '9';
     while (!queue.isEmpty()) {
-      int r = queue.peek().getKey();
+      int r = queue.poll().getKey();
       int c = queue.poll().getValue();
       for (int[] dir : DIRECTIONS) {
         int newR = r + dir[0];
