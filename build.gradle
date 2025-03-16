@@ -7,7 +7,7 @@ buildscript {
         ehcacheVersion = '3.10.8'
         ehcacheClusteredVersion = '3.10.8'
         retrofitVersion = '2.9.0'
-        retrofitConverterGsonVersion = '2.9.0'
+        retrofitConverterGsonVersion = '2.11.0'
         retrofitConverterJacksonVersion = '2.9.0'
         loggingInterceptorVersion = '4.9.0'
         commonsCodecVersion = '1.15'

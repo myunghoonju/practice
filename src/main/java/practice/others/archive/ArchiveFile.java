@@ -82,7 +82,7 @@ public class ArchiveFile {
     }
   }
 
-  static void read(ReceiveData d, String name) {
+  public static void read(ReceiveData d, String name) {
     String s = d.getFilePath().replace(d.getFileName(), name);
     try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(s), Charset.forName("EUC-KR"))) {
       bufferedReader.lines().forEach(l -> System.out.println(l.replace("|", " ")));
