@@ -1,8 +1,8 @@
 package practice.algorithm.nossi.hashtable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class TwoSum {
 
@@ -14,21 +14,50 @@ public class TwoSum {
         ints[3] = 15;
 
         Arrays.stream(twoSum(ints, 9)).forEach(System.err::println);
+        Arrays.stream(twoSum2(ints, 9)).forEach(System.err::println);
     }
 
     public static int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> result = new HashMap<>();
-        int[] idx = new int[2];
-        for (int i = 0; i < nums.length; i++) {
-            int i1 = target - nums[i];
-            if (result.containsKey(i1)) {
-                idx[0] = i;
-                idx[1] = result.get(target - nums[i]);
+        int length = nums.length;
+        int[] result = new int[2];
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j < length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    result[0] = i;
+                    result[1] = j;
+                }
             }
-
-            result.put(nums[i], i);
         }
 
-        return idx;
+        return result;
+    }
+
+    public static int[] twoSum2(int[] nums, int target) {
+        return backTrack(nums, target, 0, new ArrayList<>());
+    }
+
+    public static int[] backTrack(int[] nums,
+                                  int target,
+                                  int start,
+                                  List<Integer> ans) {
+        if (ans.size() == 2) {
+            if(nums[ans.get(0)] + nums[ans.get(1)] == target) {
+                return new int[]{ans.get(0), ans.get(1)};
+            }
+
+            return null;
+        }
+
+        for (int i = start; i < nums.length; i++) {
+            ans.add(i);
+            int[] res = backTrack(nums, target, i + 1, ans);
+            if (res != null) {
+                return res;
+            }
+
+            ans.remove(ans.size() - 1);
+        }
+
+        return null;
     }
 }
