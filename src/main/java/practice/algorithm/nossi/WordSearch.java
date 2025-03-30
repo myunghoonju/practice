@@ -38,9 +38,9 @@ public class WordSearch {
       int nr = row + dr[i];
       int nc = col + dc[i];
       if (nr >= 0 &&
-              nc >= 0  &&
-              nr < m &&
-              nc < n) {
+          nc >= 0  &&
+          nr < m &&
+          nc < n) {
         if (board[nr][nc] == word.charAt(index + 1)) {
           char buffer = board[nr][nc];
           board[nr][nc] = ' ';
