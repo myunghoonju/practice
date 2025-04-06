@@ -1,4 +1,4 @@
-package practice.algorithm.nossi;
+package practice.algorithm.nossi.ch01;
 
 public class BinarySearch {
 

@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.tree;
+package practice.algorithm.nossi;
 
 import java.util.HashMap;
 import java.util.HashSet;

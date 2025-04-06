@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.hashtable;
+package practice.algorithm.nossi;
 
 import java.util.ArrayList;
 import java.util.Arrays;

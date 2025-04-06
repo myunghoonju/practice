@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.tree;
+package practice.algorithm.nossi;
 
 //104. Maximum Depth of Binary Tree
 public class MaximumDepth {
