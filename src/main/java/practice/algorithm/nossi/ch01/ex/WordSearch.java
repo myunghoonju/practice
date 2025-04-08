@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.ch01;
+package practice.algorithm.nossi.ch01.ex;
 
 // https://leetcode.com/problems/word-search/
 public class WordSearch {

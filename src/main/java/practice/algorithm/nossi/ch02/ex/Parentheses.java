@@ -1,4 +1,4 @@
-package practice.algorithm.nossi.ch02;
+package practice.algorithm.nossi.ch02.ex;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
