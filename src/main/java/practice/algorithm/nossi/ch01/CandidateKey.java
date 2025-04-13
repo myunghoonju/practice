@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/main/java/practice/algorithm/nossi/ch01/CandidateKey.java
 package practice.algorithm.nossi.ch01;
-=======
-package practice.algorithm;
->>>>>>> origin/main:src/main/java/practice/algorithm/CandidateKey.java
 
 import java.util.ArrayList;
 import java.util.HashSet;
