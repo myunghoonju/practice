@@ -1,9 +1,11 @@
 package practice.reflection;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,9 +72,15 @@ public class ReflectionUnitTest {
     }
 
     @Test
-    public void testSix() {
-        log.info("givenClass_whenGetsSuperClass_thenCorrect");
+    void calling_method_with_parameter() throws Exception {
+        OperationService service = new OperationService();
+        Class<OperationService> aClass = OperationService.class;
+        
+        Method add = aClass.getMethod("add", int.class, int.class);
+        Method divide = aClass.getDeclaredMethod("privateDivide", int.class, int.class);
 
+        assertEquals(30, add.invoke(service, 10, 20));
+        assertEquals(2, divide.invoke(service, 20, 10));
     }
 
     private static List<String> getFieldNames(Field[] fields) {
