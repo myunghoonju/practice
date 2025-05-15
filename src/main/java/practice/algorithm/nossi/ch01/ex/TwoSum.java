@@ -60,4 +60,18 @@ public class TwoSum {
 
         return null;
     }
+
+    // 두 수를 더해서 타켓이 나오면 답
+    static int[] sol3(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            int a = nums[i];
+            for (int j = i + 1; j < nums.length; j++) {
+                int b = nums[j];
+                if (a + b == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{0};
+    }
 }
