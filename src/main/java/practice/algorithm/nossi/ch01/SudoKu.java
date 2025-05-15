@@ -97,4 +97,48 @@ public class SudoKu {
     }
     return true;
   }
+
+  boolean sol2(char[][] board, int r, int c) {
+    if (r == board.length) {
+      return true;
+    }
+
+    if (c == board[0].length) {
+      return sol2(board, r + 1, 0);
+    }
+
+    if (board[r][c] != '.') {
+      return sol2(board, r, c + 1);
+    }
+
+    for (char num = '1'; num <= '9'; num++) {
+      if (valid2(board, r, c, num)) {
+        board[r][c] = num;
+        if (sol2(board, r, c + 1)) {
+          return true;
+        }
+        board[r][c] = '.';
+      }
+    }
+    return false;
+  }
+
+  boolean valid2(char[][] board, int r, int c, char next) {
+    for (int i = 0; i < board.length; i++) {
+      if (board[i][c] == next) {
+        return false;
+      }
+
+      if (board[r][i] == next) {
+        return false;
+      }
+
+      int subr = 3 * (r / 3) + i / 3;
+      int subc = 3 * (c / 3) + i % 3;
+      if (board[subr][subc] == next) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
