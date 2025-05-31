@@ -17,8 +17,10 @@ public class DiameterBTree {
     int lDepth = depth(node.left);
     int rDepth = depth(node.right);
 
+    // 2 == root + the other side of node
     depth = Math.max(depth, lDepth + rDepth + 2);
 
+    // 1 == root
     return Math.max(lDepth, rDepth) + 1;
   }
 }
