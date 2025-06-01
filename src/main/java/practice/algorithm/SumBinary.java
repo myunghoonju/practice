@@ -3,11 +3,14 @@ package practice.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.toBinaryString;
+
 public class SumBinary {
 
   public static void main(String[] args) {
-    System.out.println(new Note().sumBinary1("11", "1"));
-    System.out.println(new Note().sumBinary2("11", "1"));
+    System.out.println(new SumBinary().sumBinary1("11", "1"));
+    System.out.println(new SumBinary().sumBinary2("11", "1"));
   }
   String sumBinary1(String a, String b) {
     return toBinaryString(parseInt(a, 2) + parseInt(b, 2));
