@@ -30,7 +30,5 @@ public class InvertBTree {
           this.left = left;
           this.right = right;
       }
-
-
   }
 }

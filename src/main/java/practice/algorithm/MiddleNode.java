@@ -1,9 +1,12 @@
 package practice.algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MiddleNode {
   
   ListNode sol1(ListNode head) {
-    List<ListNode> aa = new ArrayList();
+    List<ListNode> aa = new ArrayList<>();
     int result = 0;
     while (head != null) {
       aa.add(result++, head);
