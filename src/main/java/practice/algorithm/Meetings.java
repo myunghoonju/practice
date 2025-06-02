@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class Meetings {
 
+  public static void main(String[] args) {
+    int[][] a = {{0,30},{5,10},{15,20}};
+    int[][] b = {{7,10},{2,4}};
+    new Meetings().canAttendMeetings2(b);
+  }
+
   public boolean canAttendMeetings(int[][] intervals) {
     Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
     for (int i = 0; i < intervals.length -1; i++) {
@@ -17,7 +23,7 @@ public class Meetings {
   }
 
   // Approach 1: Brute Force
-  private boolean canAttendMeetings2(int[][] intervals) {
+  public boolean canAttendMeetings2(int[][] intervals) {
     for (int i = 0; i < intervals.length - 1; i++) {
       for (int j = i + 1; j < intervals.length; j++) {
         if (overlap(intervals[i], intervals[j])) {
@@ -32,8 +38,8 @@ public class Meetings {
   * case 1. first meeting starts later and second meeting is longer
   * case 2. second meeting starts later and first meeting is longer
   * */
-  private boolean overlap(int[] a, int[] b) {
-    return a[0] >= b[0] && a[0] < b[1] ||
-           a[0] <= b[0] && a[1] > b[1];
+  private boolean overlap(int[] interval1, int[] interval2) {
+    return (interval1[0] >= interval2[0] && interval1[0] < interval2[1])
+            || (interval2[0] >= interval1[0] && interval2[0] < interval1[1]);
   }
 }
