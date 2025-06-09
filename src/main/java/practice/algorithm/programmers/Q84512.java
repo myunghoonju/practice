@@ -1,10 +1,10 @@
-package practice.algorithm;
+package practice.algorithm.programmers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/84512
-public class Programmers84512 {
+public class Q84512 {
   public int solution(String word) {
     int answer = 0;
     List<String> words = new ArrayList<>();
