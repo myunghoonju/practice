@@ -13,6 +13,8 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.integration.redis.util.RedisLockRegistry;
+import org.springframework.integration.support.locks.ExpirableLockRegistry;
 
 import java.time.Duration;
 
@@ -40,6 +42,11 @@ public class RedisConfig {
     RedisNode redisNode = new RedisNode("localhost", 6381);
     redisClusterConfiguration.addClusterNode(redisNode);
     return new LettuceConnectionFactory(redisClusterConfiguration ,getLettuceClientConfiguration());
+  }
+
+  @Bean("locker")
+  public ExpirableLockRegistry locker() {
+    return new RedisLockRegistry(redisConnectionFactory(), "locker", Duration.ofSeconds(10).toMillis());
   }
 
   private static LettuceClientConfiguration getLettuceClientConfiguration() {

@@ -21,6 +21,11 @@ public class SingleNumber {
    return 0;
   }
 
+  //bitwise operations
+  public int sol2(int[] nums) {
+    return 0;
+  }
+
   public static void main(String[] args) {
     SingleNumber singleNumber = new SingleNumber();
     System.out.println(singleNumber.sol(new int[]{1}));
