@@ -18,7 +18,7 @@ import org.springframework.integration.support.locks.ExpirableLockRegistry;
 
 import java.time.Duration;
 
-//@Configuration
+@Configuration
 public class RedisConfig {
 
   @Bean

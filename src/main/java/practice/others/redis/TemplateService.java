@@ -1,13 +1,20 @@
 package practice.others.redis;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.RedisSystemException;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.integration.support.locks.ExpirableLockRegistry;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
+@Slf4j
 @Service
+@EnableScheduling
 public class TemplateService {
 
   private final ExpirableLockRegistry locker;
@@ -19,13 +26,23 @@ public class TemplateService {
     this.ops = ops;
   }
 
-  public boolean test(String key, String value) {
-    Lock locker1 = locker.obtain("locker");
-    if (locker1.tryLock()){
-      return Boolean.TRUE.equals(ops.setIfAbsent(key, value, 10L, TimeUnit.SECONDS));
+  @Scheduled(fixedDelay = 3000L)
+  public void test() {
+    try {
+      Lock locker1 = locker.obtain("locker");
+      if (locker1.tryLock(3000, TimeUnit.MILLISECONDS)) {
+        try {
+          ops.set("test", ops.get("test") + UUID.randomUUID().toString().substring(0, 1));
+          Thread.sleep(5000);
+          log.error("set success.");
+        } finally {
+          locker1.unlock();
+        }
+      } else {
+        log.error("tryLock failed.");
+      }
+    } catch (Exception e) {
+      log.error("test failed.", e);
     }
-
-    locker1.unlock();
-    return false;
   }
 }
