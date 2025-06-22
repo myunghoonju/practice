@@ -44,7 +44,12 @@ public class RedisConfig {
     return new LettuceConnectionFactory(redisClusterConfiguration ,getLettuceClientConfiguration());
   }
 
-  @Bean("locker")
+  @Bean
+  public DistributedLockAopService distributedLockAopService() {
+    return new DistributedLockAopService(locker());
+  }
+
+  @Bean
   public ExpirableLockRegistry locker() {
     return new RedisLockRegistry(redisConnectionFactory(), "locker", Duration.ofSeconds(10).toMillis());
   }

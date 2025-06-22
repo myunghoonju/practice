@@ -3,11 +3,13 @@ package practice.others;
 import lombok.RequiredArgsConstructor;
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import practice.others.archive.ArchiveFile;
 import practice.others.archive.ReceiveData;
 import practice.others.archive.ReceiveDatas;
+import practice.others.redis.RedisService;
 import practice.others.secret.okhttp.MybootApiService;
 import practice.others.secret.okhttp.RetrofitService;
 import retrofit2.Call;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -29,6 +32,13 @@ import java.util.zip.ZipInputStream;
 public class ApiController {
 
   static final List<String> NAMES = new ArrayList<>();
+
+  private final RedisService redisService;
+
+  @Scheduled(fixedDelay = 2_000L)
+  public void scheduledBizLogic() {
+    redisService.list(UUID.randomUUID().toString().substring(0, 1)).forEach(System.err::print);
+  }
 
   @GetMapping("/down")
   public String down(){
