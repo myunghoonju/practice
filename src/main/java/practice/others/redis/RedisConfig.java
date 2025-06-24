@@ -13,6 +13,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 import org.springframework.integration.support.locks.ExpirableLockRegistry;
 
@@ -22,16 +23,11 @@ import java.time.Duration;
 public class RedisConfig {
 
   @Bean
-  public ValueOperations<String, String> ops() {
-    return template().opsForValue();
-  }
-
-  @Bean
-  public RedisTemplate<String, String> template() {
-    RedisTemplate<String, String> template = new RedisTemplate<>();
+  public RedisTemplate<String, Object> template() {
+    RedisTemplate<String, Object> template = new RedisTemplate<>();
     template.setConnectionFactory(redisConnectionFactory());
-    template.setKeySerializer(new GenericJackson2JsonRedisSerializer());
-    template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+    template.setKeySerializer(new StringRedisSerializer());
+    template.setValueSerializer(new StringRedisSerializer());
 
     return template;
   }
@@ -51,7 +47,7 @@ public class RedisConfig {
 
   @Bean
   public ExpirableLockRegistry locker() {
-    return new RedisLockRegistry(redisConnectionFactory(), "locker", Duration.ofSeconds(10).toMillis());
+    return new RedisLockRegistry(redisConnectionFactory(), "locker");
   }
 
   private static LettuceClientConfiguration getLettuceClientConfiguration() {

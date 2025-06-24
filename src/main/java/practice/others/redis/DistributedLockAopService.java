@@ -39,7 +39,7 @@ public class DistributedLockAopService {
 
   private boolean tryLock(Lock locker1) {
     try {
-      return locker1.tryLock(10_000L, TimeUnit.MILLISECONDS);
+      return locker1.tryLock(20_000L, TimeUnit.MILLISECONDS);
     } catch (InterruptedException e) {
       log.error("tryLock failed.", e);
     }

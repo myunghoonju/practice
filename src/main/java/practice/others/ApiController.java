@@ -35,9 +35,9 @@ public class ApiController {
 
   private final RedisService redisService;
 
-  @Scheduled(fixedDelay = 2_000L)
+  @Scheduled(fixedDelay = 10_000L)
   public void scheduledBizLogic() {
-    redisService.list(UUID.randomUUID().toString().substring(0, 1)).forEach(System.err::print);
+    redisService.list("1").forEach(it -> System.out.printf("  " + it + "  "));
   }
 
   @GetMapping("/down")

@@ -2,9 +2,11 @@ package practice.others.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.integration.support.locks.ExpirableLockRegistry;
+import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
@@ -13,20 +15,20 @@ import java.util.concurrent.locks.Lock;
 public class DistributedLockService {
 
   private final ExpirableLockRegistry locker;
-  private final ValueOperations<String, String> ops;
+  private final RedisTemplate<String, String> ops;
 
   public DistributedLockService(ExpirableLockRegistry locker,
-                                ValueOperations<String, String> ops) {
+                                RedisTemplate<String, String> template) {
     this.locker = locker;
-    this.ops = ops;
+    this.ops = template;
   }
 
   public int result() {
-    return ops.get("test") != null ? ops.get("test").split("").length : 0;
+    return List.of(ops.opsForValue().get("test1").split("")).size();
   }
 
   public void clean() {
-    ops.getAndDelete("test");
+    ops.opsForValue().getAndDelete("test1");
   }
 
   public void test(String val) {
@@ -34,8 +36,9 @@ public class DistributedLockService {
       Lock locker1 = locker.obtain("locker");
       if (locker1.tryLock(10_000L, TimeUnit.MILLISECONDS)) {
         try {
-          ops.set("test", ops.get("test") == null ? val : ops.get("test") + val);
-          Thread.sleep(2_000L);
+          ops.opsForValue().setIfAbsent("test1", val);
+          ops.opsForValue().append("test1", val);
+          Thread.sleep(1_000L);
           log.error("set success.");
         } finally {
           locker1.unlock();
@@ -50,7 +53,9 @@ public class DistributedLockService {
 
   public void testWithoutLock(String val) {
     try {
-      ops.set("test", ops.get("test") == null ? val : ops.get("test") + val);
+      ops.opsForValue().setIfAbsent("test1", val);
+      ops.opsForValue().append("test1", val);
+      Thread.sleep(1_000L);
       log.error("set success.");
     } catch (Exception e) {
       log.error("set failed.", e);
