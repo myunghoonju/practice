@@ -14,9 +14,12 @@ import java.util.concurrent.locks.Lock;
 public class DistributedLockAopService {
 
   private final ExpirableLockRegistry locker;
+  private final ExpirableLockRegistry locker2;
 
-  public DistributedLockAopService(ExpirableLockRegistry locker) {
+  public DistributedLockAopService(ExpirableLockRegistry locker,
+                                   ExpirableLockRegistry locker2) {
     this.locker = locker;
+    this.locker2 = locker2;
   }
 
   @Around("@annotation(practice.others.redis.RedisTransactional)")
@@ -32,18 +35,33 @@ public class DistributedLockAopService {
         }
       } else {
         log.error("tryLock failed. It'll be expired");
+        return null;
       }
-
-      throw new RuntimeException("redisTransactional exception");
   }
 
-  private boolean tryLock(Lock locker1) {
+  public boolean tryLock(Lock l) {
     try {
-      return locker1.tryLock(20_000L, TimeUnit.MILLISECONDS);
+      return l.tryLock(20_000L, TimeUnit.MILLISECONDS);
     } catch (InterruptedException e) {
       log.error("tryLock failed.", e);
     }
 
     return false;
+  }
+
+  @Around("@annotation(practice.others.redis.DistributedSchedule)")
+  public void distributedSchedule(ProceedingJoinPoint target) {
+    Lock lockSchedule = locker2.obtain("locker2");;
+    try {
+      if (lockSchedule.tryLock(5_000L, TimeUnit.MILLISECONDS)) {
+        try {
+          target.proceed();
+        } catch (Throwable e) {
+          throw new RuntimeException("lockSchedule target exception", e);
+        }
+      }
+    } catch (Exception e) {
+      log.error(e.getMessage(), e);
+    }
   }
 }

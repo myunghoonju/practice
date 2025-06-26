@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,20 @@ public class RedisService {
   @Autowired
   Environment environment;
 
+  private final DistributedLockAopService  distributedLockAopService;
   private final RedisTemplate<String, String> template;
 
-  public RedisService(RedisTemplate<String, String> template) {
+
+  public RedisService(DistributedLockAopService distributedLockAopService,
+                      RedisTemplate<String, String> template) {
+    this.distributedLockAopService = distributedLockAopService;
     this.template = template;
+  }
+
+  @DistributedSchedule
+  @Scheduled(fixedDelay = 10_000L)
+  public void task() {
+    log.info("DistributedSchedule task start");
   }
 
   @RedisTransactional

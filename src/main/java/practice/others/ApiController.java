@@ -3,7 +3,6 @@ package practice.others;
 import lombok.RequiredArgsConstructor;
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import practice.others.archive.ArchiveFile;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -35,7 +33,7 @@ public class ApiController {
 
   private final RedisService redisService;
 
-  @Scheduled(fixedDelay = 10_000L)
+//  @Scheduled(fixedDelay = 10_000L)
   public void scheduledBizLogic() {
     redisService.list("1").forEach(it -> System.out.printf("  " + it + "  "));
   }
