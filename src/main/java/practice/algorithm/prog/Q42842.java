@@ -1,4 +1,4 @@
-package practice.algorithm.programmers;
+package practice.algorithm.prog;
 
 public class Q42842 {
 

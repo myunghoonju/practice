@@ -1,4 +1,4 @@
-package practice.algorithm.programmers;
+package practice.algorithm.prog;
 
 //https://school.programmers.co.kr/learn/courses/30/lessons/81302
 public class DistancedRoom {

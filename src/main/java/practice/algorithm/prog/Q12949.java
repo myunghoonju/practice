@@ -1,4 +1,4 @@
-package practice.algorithm.programmers;
+package practice.algorithm.prog;
 
 import java.util.Arrays;
 import java.util.List;
