@@ -9,9 +9,9 @@ public class Q1844 {
   private static final int[] DY = {-1, 0, 1, 0};
 
   private static class State {
-    private int x;
-    private int y;
-    private int step;
+    private final int x;
+    private final int y;
+    private final int step;
 
     public State(int x, int y, int step) {
       this.x = x;
@@ -36,9 +36,9 @@ public class Q1844 {
         int nx = s.x + DX[i];
         int ny = s.y + DY[i];
         if (ny < 0 ||
-                ny >= maps.length ||
-                nx < 0 ||
-                nx >= maps[0].length) {
+            ny >= maps.length ||
+            nx < 0 ||
+            nx >= maps[0].length) {
           continue;
         }
 
