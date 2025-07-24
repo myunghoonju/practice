@@ -17,4 +17,3 @@ public class Q42746 {
       .replaceAll("^0+", "0");
   }
 }
- 
