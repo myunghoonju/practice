@@ -8,18 +8,12 @@ import java.util.stream.Collectors;
 
 public class Q42862 {
 
-  public int solution(int n,
-    int[] lost,
-    int[] reserve) {
+  public int solution(int n, int[] lost, int[] reserve) {
       Arrays.sort(lost);
       Arrays.sort(reserve);
 
-      Set<Integer> owns = Arrays.stream(lost)
-              .boxed()
-              .collect(Collectors.toSet());
-      owns.retainAll(Arrays.stream(reserve)
-              .boxed()
-              .collect(Collectors.toSet()));
+      Set<Integer> owns = Arrays.stream(lost).boxed().collect(Collectors.toSet());
+      owns.retainAll(Arrays.stream(reserve).boxed().collect(Collectors.toSet()));
 
       Queue<Integer> needy = new LinkedList<>();
       for (int i : lost) {
@@ -49,6 +43,7 @@ public class Q42862 {
 
       }
 
+      // 전체학생 - 분실자 + 보유자 + 빌린자
       return n - lost.length + owns.size() + get;
   }
 }
