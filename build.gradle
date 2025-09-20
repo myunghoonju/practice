@@ -1,64 +1,44 @@
-buildscript {
-    ext {
-        springBootVersion = '2.7.7'
-        guavaVersion = '31.1-jre'
-        logbackContribVersion = '0.1.5'
-        cacheApiVersion = '1.1.1'
-        ehcacheVersion = '3.10.8'
-        ehcacheClusteredVersion = '3.10.8'
-        retrofitVersion = '2.9.0'
-        retrofitConverterGsonVersion = '2.11.0'
-        retrofitConverterJacksonVersion = '2.9.0'
-        loggingInterceptorVersion = '4.9.0'
-        commonsCodecVersion = '1.15'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group 'org.example.junitTest'
 version '1.0-SNAPSHOT'
-sourceCompatibility = '17'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-test {
-    useJUnitPlatform()
-}
-
 dependencies {
-    implementation('com.google.guava:guava:33.2.1-jre')
-    implementation('org.springframework.boot:spring-boot-starter')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-cache')
-    implementation('org.springframework.boot:spring-boot-starter-data-redis')
-    implementation('org.springframework.integration:spring-integration-redis')
-    implementation('org.springframework.boot:spring-boot-starter-aop')
+    implementation 'com.google.guava:guava:33.2.1-jre'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.integration:spring-integration-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-    implementation("javax.cache:cache-api:${cacheApiVersion}")
-    implementation("org.ehcache:ehcache:${ehcacheVersion}")
-    implementation("org.ehcache:ehcache-clustered:${ehcacheClusteredVersion}")
-    implementation("com.google.guava:guava:${guavaVersion}")
-    implementation("ch.qos.logback.contrib:logback-jackson:${logbackContribVersion}")
-    implementation("ch.qos.logback.contrib:logback-json-classic:${logbackContribVersion}")
-    implementation("commons-codec:commons-codec:${commonsCodecVersion}")
-    implementation("com.squareup.retrofit2:retrofit:${retrofitVersion}")
-    implementation("com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}")
-    implementation("com.squareup.retrofit2:converter-jackson:${retrofitConverterJacksonVersion}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}")
-    implementation('io.projectreactor.netty:reactor-netty:1.2.2')
-    implementation('io.reactivex.rxjava3:rxjava:3.1.5')
+    implementation 'javax.cache:cache-api:1.1.1'
+    implementation 'org.ehcache:ehcache:3.10.8'
+    implementation 'org.ehcache:ehcache-clustered:3.10.8'
+    implementation 'com.google.guava:guava:33.5.0-jre'
+    implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+    implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:3.0.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.1.0'
+    implementation 'io.projectreactor.netty:reactor-netty:1.2.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
 
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
@@ -67,4 +47,8 @@ dependencies {
     testAnnotationProcessor('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.junit.jupiter:junit-jupiter:5.10.0')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }

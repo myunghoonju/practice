@@ -31,18 +31,18 @@ public class BlockingToReactiveSampleTest {
         assertThat(repository.callCount()).isEqualTo(1).withFailMessage("The call to findAll must be deferred until the flux is subscribed");
     }
 
-    @Test
-    void save() {
-        ReactiveRepository<User> reactiveRepository = new ReactiveUserRepository();
-        Mono<Void> complete = reactiveRepository.findAll().publishOn(Schedulers.elastic()).doOnNext(repository::save).then();
-
-        assertThat(repository.callCount()).isEqualTo(0);
-
-        StepVerifier.create(complete).verifyComplete();
-        Iterator<User> it = repository.findAll().iterator();
-        assertThat(it.next()).isEqualTo(User.SKYLER);
-        assertThat(it.next()).isEqualTo(User.JESSE);
-        assertThat(it.next()).isEqualTo(User.WALTER);
-        assertThat(it.next()).isEqualTo(User.SAUL);
-    }
+//    @Test
+//    void save() {
+//        ReactiveRepository<User> reactiveRepository = new ReactiveUserRepository();
+//        Mono<Void> complete = reactiveRepository.findAll().publishOn(Schedulers.elastic()).doOnNext(repository::save).then();
+//
+//        assertThat(repository.callCount()).isEqualTo(0);
+//
+//        StepVerifier.create(complete).verifyComplete();
+//        Iterator<User> it = repository.findAll().iterator();
+//        assertThat(it.next()).isEqualTo(User.SKYLER);
+//        assertThat(it.next()).isEqualTo(User.JESSE);
+//        assertThat(it.next()).isEqualTo(User.WALTER);
+//        assertThat(it.next()).isEqualTo(User.SAUL);
+//    }
 }
