@@ -13,6 +13,7 @@ public class FlexibleConstructor {
 }
 
 class BaseClass {
+
   public BaseClass() {
     check();
   }
@@ -20,14 +21,13 @@ class BaseClass {
   public void check() {}
 }
 
-
 class NonFlexibleConstructor extends BaseClass {
 
   private String value;
 
   public NonFlexibleConstructor(String aValue) {
 // call to 'super()' must be first statement in constructor body
-//  super();
+// super();
     this.value = aValue;
   }
 
