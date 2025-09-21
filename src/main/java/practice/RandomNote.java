@@ -1,8 +1,5 @@
-package practice;
+import static java.lang.IO.println;
 
-public class RandomNote {
-
-  public static void main(String[] args) {
-    System.out.println("Random Notes");
-  }
+void main() {
+  println("Random Note");
 }
