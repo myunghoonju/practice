@@ -38,6 +38,11 @@ public class ApiController {
     redisService.list("1").forEach(it -> System.out.printf("  " + it + "  "));
   }
 
+  @GetMapping("/")
+  public String health() {
+    return "ok";
+  }
+
   @GetMapping("/down")
   public String down(){
     Call<ResponseBody> execute = RetrofitService.getCli("https://update.juso.go.kr")
