@@ -2,6 +2,8 @@ package practice.algorithm.prog;
 
 import java.util.Stack;
 
+import static java.lang.IO.println;
+
 public class Q43165 {
 
   private static class State {
@@ -49,7 +51,8 @@ public class Q43165 {
            dfs(numbers, target, idx + 1, sum - numbers[idx]);
   }
 
-  public static void main(String[] args) {
-    System.out.println(new Q43165().solution(new int[]{1, 1, 1, 1, 1}, 5));
+  static void main(String[] args) {
+    println(new Q43165().solution(new int[]{1, 1, 1, 1, 1}, 5));
+    println(solution2(new int[]{1, 1, 1, 1, 1}, 5));
   }
 }
