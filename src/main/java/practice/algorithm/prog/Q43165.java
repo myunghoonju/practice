@@ -36,6 +36,19 @@ public class Q43165 {
     return cnt;
   }
 
+  static int solution2(int[] numbers, int target) {
+    return dfs(numbers, target, 0, 0);
+  }
+
+  static int dfs(int[] numbers, int target, int idx, int sum) {
+    if (numbers.length == idx) {
+      return sum == target ? 1 : 0;
+    }
+
+    return dfs(numbers, target, idx + 1, sum + numbers[idx]) +
+           dfs(numbers, target, idx + 1, sum - numbers[idx]);
+  }
+
   public static void main(String[] args) {
     System.out.println(new Q43165().solution(new int[]{1, 1, 1, 1, 1}, 5));
   }
