@@ -27,7 +27,7 @@ public class LC1059 {
     }
 
     state[node] = "black";
-    
+
     return true;
   }
 
