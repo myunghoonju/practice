@@ -2,6 +2,7 @@ package practice.algorithm.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class LC2130 {
 
@@ -49,6 +50,28 @@ public class LC2130 {
       max = Math.max(max, nodes.get(i) + nodes.get(j));
       i++;
       j--;
+    }
+
+    return max;
+  }
+
+  int pairSum3(ListNode head) {
+    ListNode cur = head;
+    Stack<Integer> nodes = new Stack<>();
+    while (cur != null) {
+      nodes.push(cur.val);
+      cur = cur.next;
+    }
+
+    cur = head;
+    int size = nodes.size();
+    int cnt = 1;
+    int max = 0;
+    while (cnt <= size / 2) {
+      max = Math.max(max, cur.val + nodes.peek());
+      cur = cur.next;
+      nodes.pop();
+      cnt++;
     }
 
     return max;
