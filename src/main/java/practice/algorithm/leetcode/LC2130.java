@@ -33,4 +33,24 @@ public class LC2130 {
 
       return max;
     }
+
+  int pairSum2(ListNode head) {
+    ListNode cur = head;
+    List<Integer> nodes = new ArrayList<>();
+    while (cur != null) {
+      nodes.add(cur.val);
+      cur = cur.next;
+    }
+
+    int i = 0;
+    int j = nodes.size() - 1;
+    int max = 0;
+    while (i < j) {
+      max = Math.max(max, nodes.get(i) + nodes.get(j));
+      i++;
+      j--;
+    }
+
+    return max;
+  }
 }
