@@ -1,11 +1,9 @@
 package practice.algorithm.leetcode;
 
-import lombok.val;
-
 public class LC443 {
 
   static void main() {
-    val lc443 = new LC443();
+    LC443 lc443 = new LC443();
     char[] a = {'a','b','b','b','b','b','b','b','b','b','b','b','b'};
     System.out.println(lc443.compress(a));
   }
