@@ -14,10 +14,10 @@ public class LC399 {
       String divisor = eq.get(1);
       double value = values[idx];
 
-      graph.computeIfAbsent(dividend, key -> new HashMap<>());
-      graph.computeIfAbsent(divisor, key -> new HashMap<>());
-      graph.get(dividend).put(divisor, value);
-      graph.get(divisor).put(dividend, 1 / value);
+      graph.computeIfAbsent(dividend, key -> new HashMap<>())
+           .put(divisor, value);
+      graph.computeIfAbsent(divisor, key -> new HashMap<>())
+           .put(dividend, 1 / value);
     }
 
     double[] res = new double[queries.size()];
