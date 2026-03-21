@@ -32,38 +32,37 @@ public class LC399 {
         res[i] = 1.0;
       } else {
         Set<String> visited = new HashSet<>();
-        res[i] = dfs(graph, dividend, divisor, 1.0d, visited);
+        Double found = dfs(graph, dividend, divisor, 1.0d, visited);
+        res[i] = found == null ? -1.0d : found;
       }
     }
     return res;
   }
 
-  private double dfs(Map<String, Map<String, Double>> graph,
+  private Double dfs(Map<String, Map<String, Double>> graph,
                      String dividend,
-                     String divider,
+                     String divisor,
                      double mul,
                      Set<String> visited) {
     visited.add(dividend);
 
-    double result = -1.0d;
+    Double result = null;
     Map<String, Double> neighbor = graph.get(dividend);
-    if (neighbor.containsKey(divider)) {
-      result = mul * neighbor.get(divider);
+    if (neighbor.containsKey(divisor)) {
+      result = mul * neighbor.get(divisor);
     } else {
-      for (Map.Entry<String , Double> e : neighbor.entrySet()) {
+      for (Map.Entry<String, Double> e : neighbor.entrySet()) {
         String key = e.getKey();
         if (visited.contains(key)) {
           continue;
         }
 
-        result = dfs(graph, key, divider, mul * e.getValue(), visited);
-        if (result != -1.0d) {
+        result = dfs(graph, key, divisor, mul * e.getValue(), visited);
+        if (result != null) {
           break;
         }
       }
     }
-
-    visited.remove(dividend);
 
     return result;
   }
