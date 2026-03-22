@@ -1,4 +1,4 @@
-package practice.algorithm;
+package practice.algorithm.leetcode;
 
 import java.util.LinkedList;
 import java.util.Queue;
