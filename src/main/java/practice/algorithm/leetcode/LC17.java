@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LC12 {
+public class LC17 {
 
     List<String> TWO = List.of("a", "b", "c");
     List<String> THREE = List.of("d", "e", "f");
