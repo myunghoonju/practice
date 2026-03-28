@@ -1,4 +1,4 @@
-package practice.algorithm.leetcode.lc394;
+package practice.algorithm.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
