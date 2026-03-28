@@ -7,7 +7,7 @@ public class LC70 {
         return memoization(0, n, memo);
     }
 
-    //top-down dp
+    //top-down: recursion
     private int memoization(int step, int n, int[] memo) {
         if (step == n) {
             return 1;
@@ -26,8 +26,8 @@ public class LC70 {
         return memo[step];
     }
 
-    //bottom-up dp
-    private int bottomUp(int n) {
+    //bottom-up: iteration
+    private int tabulation(int n) {
         if (n < 3) {
             return n;
         }
