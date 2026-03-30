@@ -10,34 +10,40 @@ public class LC1926 {
 
     public int nearestExit(char[][] maze, int[] entrance) {
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{entrance[0], entrance[1], 0});
-        maze[entrance[0]][entrance[1]] = '+';
+        queue.add(entrance);
 
+        boolean[][] visited = new boolean[maze.length][maze[0].length];
+        visited[entrance[0]][entrance[1]] = true;
+
+        int steps = 0;
         while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            for (int idx = 0; idx < dy.length; idx++) {
-                    int x = current[0] + dx[idx];
-                    int y = current[1] + dy[idx];
-
-                    if (x < 0 || x >= maze.length ||
-                        y < 0 || y >= maze[0].length) {
+            steps++;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] current = queue.poll();
+                for (int i1 = 0; i1 < 4; i1++) {
+                    int nx = current[0] + dx[i1];
+                    int ny = current[1] + dy[i1];
+                    if (nx < 0 || ny < 0 || nx >= maze.length || ny >= maze[0].length) {
                         continue;
                     }
 
-                    if (maze[x][y] == '+') {
+                    if (visited[nx][ny]) {
                         continue;
                     }
 
-                    if (x == 0 ||
-                        y == 0 ||
-                        x ==  maze.length - 1 ||
-                        y == maze[0].length - 1) {
-                        return current[2] + 1;
+                    if (maze[nx][ny] == '+') {
+                        continue;
                     }
 
-                    maze[x][y] = '+';
+                    if (nx == 0 || nx == maze.length - 1 || ny == 0 || ny == maze[0].length - 1) {
+                        return steps;
+                    }
 
-                    queue.add(new int[]{x, y, current[2] + 1});
+                    visited[nx][ny] = true;
+
+                    queue.add(new int[]{nx, ny});
+                }
             }
         }
 
