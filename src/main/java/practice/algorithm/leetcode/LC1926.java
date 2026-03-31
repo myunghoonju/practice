@@ -49,4 +49,45 @@ public class LC1926 {
 
         return -1;
     }
+
+    public int nearestExit2(char[][] maze, int[] entrance) {
+        Queue<int[]> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[maze.length][maze[0].length];
+        queue.add(new int[] {entrance[0], entrance[1], 0});
+        visited[entrance[0]][entrance[1]] = true;
+        while (!queue.isEmpty()) {
+            int[] point = queue.poll();
+            int x = point[0];
+            int y = point[1];
+            int d = point[2];
+
+            if ((x == 0 ||
+                 y == 0 ||
+                 x == maze.length - 1 ||
+                 y == maze[0].length - 1) &&
+                !(x == entrance[0] && y == entrance[1])) {
+                return d;
+            }
+
+
+            for (int j = 0; j < 4; j++) {
+                int newx = x + dx[j];
+                int newy = y + dy[j];
+                if (newx >= 0 &&
+                    newy >= 0 &&
+                    newx < maze.length &&
+                    newy < maze[0].length &&
+                    maze[newx][newy] == '.') {
+                    if (visited[newx][newy]) {
+                        continue;
+                    }
+
+                    visited[newx][newy] = true;
+                    queue.add(new int[] {newx, newy, d+1});
+                }
+            }
+        }
+
+        return -1;
+    }
 }
