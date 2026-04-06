@@ -4,26 +4,29 @@ import java.util.Arrays;
 
 public class Q43105 {
 
-  private static int[][] mem = new int[501][501];
-
   public int solution(int[][] triangle) {
-    for (int[] ints : mem) {
+    int[][] visit = new int[triangle.length][triangle.length];
+    for (int[] ints : visit) {
       Arrays.fill(ints, -1);
     }
-
-    return max(0, 0, triangle);
+    return recursive(triangle, 0, 0, visit);
   }
 
-  private int max(int x, int y, int[][] triangle) {
-    if (y == triangle.length) {
+  private int recursive(int[][] triangle,
+                         int direction,
+                         int level,
+                         int[][] visit) {
+    if (level == triangle.length) {
       return 0;
     }
 
-    if (mem[x][y] != -1) {
-      return mem[x][y];
+    if (visit[level][direction] >= 0) {
+      return visit[level][direction];
     }
 
-    return mem[x][y] = triangle[y][x] + Math.max(max(x, y + 1, triangle),
-                                                 max(x + 1, y + 1, triangle));
+    visit[level][direction] =  triangle[level][direction] + Math.max(recursive(triangle, direction, level + 1, visit), recursive(triangle, direction + 1, level + 1, visit));
+
+    return visit[level][direction];
   }
+
 }
