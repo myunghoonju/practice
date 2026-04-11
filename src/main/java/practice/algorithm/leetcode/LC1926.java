@@ -10,83 +10,50 @@ public class LC1926 {
 
     public int nearestExit(char[][] maze, int[] entrance) {
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(entrance);
-
         boolean[][] visited = new boolean[maze.length][maze[0].length];
         visited[entrance[0]][entrance[1]] = true;
-
-        int steps = 0;
-        while (!queue.isEmpty()) {
-            steps++;
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                int[] current = queue.poll();
-                for (int i1 = 0; i1 < 4; i1++) {
-                    int nx = current[0] + dx[i1];
-                    int ny = current[1] + dy[i1];
-                    if (nx < 0 || ny < 0 || nx >= maze.length || ny >= maze[0].length) {
-                        continue;
-                    }
-
-                    if (visited[nx][ny]) {
-                        continue;
-                    }
-
-                    if (maze[nx][ny] == '+') {
-                        continue;
-                    }
-
-                    if (nx == 0 || nx == maze.length - 1 || ny == 0 || ny == maze[0].length - 1) {
-                        return steps;
-                    }
-
-                    visited[nx][ny] = true;
-
-                    queue.add(new int[]{nx, ny});
+        queue.add(new int[] {entrance[0], entrance[1], 0});
+        for (int i = 0; i < maze.length; i++) {
+            for (int i1 = 0; i1 < maze[0].length; i1++) {
+                if (maze[i][i1] == '+') {
+                    visited[i][i1] = true;
                 }
             }
         }
 
-        return -1;
+        return findExit(queue, maze, visited);
     }
 
-    public int nearestExit2(char[][] maze, int[] entrance) {
-        Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[maze.length][maze[0].length];
-        queue.add(new int[] {entrance[0], entrance[1], 0});
-        visited[entrance[0]][entrance[1]] = true;
-        while (!queue.isEmpty()) {
-            int[] point = queue.poll();
-            int x = point[0];
-            int y = point[1];
-            int d = point[2];
-
-            if ((x == 0 ||
-                 y == 0 ||
-                 x == maze.length - 1 ||
-                 y == maze[0].length - 1) &&
-                !(x == entrance[0] && y == entrance[1])) {
-                return d;
-            }
-
-
-            for (int j = 0; j < 4; j++) {
-                int newx = x + dx[j];
-                int newy = y + dy[j];
-                if (newx >= 0 &&
-                    newy >= 0 &&
-                    newx < maze.length &&
-                    newy < maze[0].length &&
-                    maze[newx][newy] == '.') {
-                    if (visited[newx][newy]) {
+    private int findExit(Queue<int[]> queue,
+                         char[][] maze,
+                         boolean[][] visited) {
+            while (!queue.isEmpty()) {
+                int[] xy = queue.poll();
+                int x = xy[0];
+                int y = xy[1];
+                int step = xy[2];
+                for (int i = 0; i < 4; i++) {
+                    int newx = x + dx[i];
+                    int newy = y + dy[i];
+                    if (newx < 0 ||
+                        newy < 0 ||
+                        newx >= maze.length ||
+                        newy >= maze[0].length ||
+                        visited[newx][newy]) {
                         continue;
                     }
 
-                    visited[newx][newy] = true;
-                    queue.add(new int[] {newx, newy, d+1});
+                    if (maze[newx][newy] == '.' && !visited[newx][newy]) {
+                        visited[newx][newy] = true;
+                        queue.add(new int[] {newx, newy, step + 1});
+                        if (newx == 0 ||
+                            newy == 0 ||
+                            newx == maze.length - 1 || newy == maze[0].length - 1) {
+                                return step + 1;
+                        }
+                    }
                 }
             }
-        }
 
         return -1;
     }
