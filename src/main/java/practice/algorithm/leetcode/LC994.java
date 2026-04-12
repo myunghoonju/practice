@@ -1,6 +1,5 @@
 package practice.algorithm.leetcode;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,7 +15,6 @@ public class LC994 {
     private static final int[] dy = {1, 0, -1, 0};
 
     public int orangesRotting(int[][] grid) {
-        int minute = 0;
         Queue<int[]> queue = new LinkedList<>();
         boolean[][] visited = new boolean[grid.length][grid[0].length];
         for (int i = 0; i < grid.length; i++) {
@@ -28,11 +26,12 @@ public class LC994 {
             }
         }
 
+        int max = Integer.MIN_VALUE;
         while (!queue.isEmpty()) {
-            int[] at = queue.poll();
-            int x = at[0];
-            int y = at[1];
-            minute = at[2];
+            int[] poll = queue.poll();
+            int x = poll[0];
+            int y = poll[1];
+            int z = poll[2];
             for (int i = 0; i < 4; i++) {
                 int newx = x + dx[i];
                 int newy = y + dy[i];
@@ -46,17 +45,20 @@ public class LC994 {
                 if (grid[newx][newy] == 1 && !visited[newx][newy]) {
                     grid[newx][newy] = 2;
                     visited[newx][newy] = true;
-                    queue.add(new int[] {newx, newy, (minute + 1)});
+                    queue.add(new int[] {newx, newy, z + 1});
+                    max = Math.max(max, z + 1);
                 }
             }
         }
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) return -1;
+                if (grid[i][j] == 1) {
+                    return -1;
+                }
             }
         }
 
-        return minute;
+        return max == Integer.MIN_VALUE ? 0 : max;
     }
 }
