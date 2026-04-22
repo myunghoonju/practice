@@ -5,16 +5,21 @@ import java.util.Arrays;
 public class LC300 {
 
   public int lengthOfLIS(int[] nums) {
-    int[] dp = new int[nums.length];
+    int[] ints = new int[nums.length];
+    Arrays.fill(ints, 1);
     for (int i = 0; i < nums.length; i++) {
-      dp[i] = 1;
       for (int j = 0; j < i; j++) {
         if (nums[i] > nums[j]) {
-          dp[i] = Math.max(dp[i], dp[j] + 1);
+          ints[i] = Math.max(ints[i], ints[j] + 1);
         }
       }
     }
 
-    return Arrays.stream(dp).max().getAsInt();
+    int ans = 0;
+    for (int anInt : ints) {
+      ans = Math.max(ans, anInt);
+    }
+
+    return ans;
   }
 }
