@@ -5,60 +5,43 @@ import java.util.Queue;
 
 public class Q1844 {
 
-  private static final int[] DX = {0, 1, 0, -1};
-  private static final int[] DY = {-1, 0, 1, 0};
-
-  private static class State {
-    private final int x;
-    private final int y;
-    private final int step;
-
-    public State(int x, int y, int step) {
-      this.x = x;
-      this.y = y;
-      this.step = step;
-    }
-  }
+  private static final int[] dx = {0, 1, 0, -1};
+  private static final int[] dy = {-1, 0, 1, 0};
 
   public int solution(int[][] maps) {
-    boolean[][] visited = new boolean[maps.length][maps[0].length];
-    Queue<State> q = new LinkedList<>();
-    q.add(new State(0, 0, 1));
-    visited[0][0] = true;
+    Queue<int[]> queue = new LinkedList<>();
+    boolean[][] visit = new boolean[maps.length][maps[0].length];
+    visit[0][0] = true;
+    queue.offer(new int[]{0, 0, 1});
 
-    while (!q.isEmpty()) {
-      State s = q.poll();
-      if (s.y == maps.length - 1 && s.x == maps[s.y].length - 1) {
-        return s.step;
-      }
-
+    while (!queue.isEmpty()) {
+      int[] data = queue.poll();
+      int x = data[0];
+      int y = data[1];
+      int z = data[2];
       for (int i = 0; i < 4; i++) {
-        int nx = s.x + DX[i];
-        int ny = s.y + DY[i];
-        if (ny < 0 ||
-            ny >= maps.length ||
-            nx < 0 ||
-            nx >= maps[0].length) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+
+        if (nx < 0 ||
+            ny < 0 ||
+            nx >= maps.length ||
+            ny >= maps[0].length ||
+            visit[nx][ny]) {
           continue;
         }
 
-        if (maps[ny][nx] != 1) {
-          continue;
-        }
+        if (maps[nx][ny] == 1) {
+          visit[nx][ny] = true;
+          queue.offer(new int[]{nx, ny, z + 1});
 
-        if (visited[ny][nx]) {
-          continue;
+          if (nx == maps.length-1 && ny == maps[0].length-1) {
+            return z + 1;
+          }
         }
-
-        visited[ny][nx] = true;
-        q.add(new State(nx, ny, s.step + 1));
       }
     }
-      return -1;
-  }
 
-  public static void main(String[] args) {
-    int[][] map = {{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 1}, {0, 0, 0, 0, 1}};
-    System.out.println(new Q1844().solution(map));
+    return -1;
   }
 }
