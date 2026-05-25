@@ -5,34 +5,36 @@ import java.util.Queue;
 
 public class Q42583 {
 
-    public int solution(int bridge_length, int weight, int[] truck_weights) {
-        int bridgeWeight = 0;
+    public int solution(int bridge_length,
+                        int weight,
+                        int[] truck_weights) {
+        int time = 0;
+        int currentWeight = 0;
+        int truckIdx = 0;
         Queue<Integer> bridge = new LinkedList<>();
+
+        // 1) 다리를 0으로 초기화 (길이만큼)
         for (int i = 0; i < bridge_length; i++) {
             bridge.offer(0);
         }
 
-        int time = 0;
-        int truckIndex = 0;
+        while (truckIdx < truck_weights.length) {
+            time++;
+            currentWeight -= bridge.poll(); // 다리 앞에서 빠져나간 트럭 무게 제거
 
-        while (truckIndex < truck_weights.length) {
-            bridgeWeight = bridgeWeight - bridge.poll();
-            int truckWeight = truck_weights[truckIndex];
-            if (bridgeWeight + truckWeight <= weight) {
-                bridge.offer(truckWeight);
-                bridgeWeight += truckWeight;
-                truckIndex++;
+            if (currentWeight + truck_weights[truckIdx] <= weight) {
+                // 2) 트럭 올라갈 수 있을 때: ___
+                currentWeight += truck_weights[truckIdx];
+                bridge.offer(truck_weights[truckIdx]);
+                truckIdx++;
             } else {
+                // 3) 못 올라갈 때: ___
                 bridge.offer(0);
             }
-
-            time++;
         }
 
-        while (bridgeWeight > 0) {
-            bridgeWeight = bridgeWeight - bridge.poll();
-            time++;
-        }
+        // 4) 마지막 트럭까지 다리를 건너는 시간: ___
+        time += bridge_length;
 
         return time;
     }
