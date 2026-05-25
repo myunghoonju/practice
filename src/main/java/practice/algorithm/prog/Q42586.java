@@ -1,38 +1,30 @@
 package practice.algorithm.prog;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class Q42586 {
 
     public int[] solution(int[] progresses, int[] speeds) {
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < progresses.length; i++) {
-            q.offer(progresses[i]);
-        }
+      int[] days = new int[progresses.length];
+      for (int i = 0; i < progresses.length; i++) {
+        days[i] = (int) Math.ceil((100 - progresses[i]) / (double) speeds[i]);
+      }
 
-        int days = 0;
+      // 2) 배포 그루핑
+      List<Integer> result = new ArrayList<>();
+      int i = 0;
+      while (i < days.length) {
+        int maxDay = days[i]; // 현재 배포 기준일
         int count = 0;
-        List<Integer> list = new LinkedList<>();
-        while (!q.isEmpty()) {
-            int idx = q.poll();
-            int expire = (int) Math.ceil((double) (100 - progresses[idx]) / speeds[idx]);
-
-            if (expire > days) {
-                if (days != 0) {
-                    list.add(count);
-                    count = 0;
-                }
-
-                days = expire;
-            }
-
-            count++;
+        while (i < days.length && days[i] <= maxDay) { // 기준일 이하면 같은 배포
+          count++;
+          i++;
         }
 
-        list.add(count);
-        return list.stream().mapToInt(Integer::intValue).toArray();
-    }
+        result.add(count);
+      }
 
+      return result.stream().mapToInt(Integer::intValue).toArray();
+    }
 }
