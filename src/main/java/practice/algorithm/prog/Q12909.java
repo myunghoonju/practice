@@ -4,40 +4,27 @@ import java.util.Stack;
 
 public class Q12909 {
 
-  static boolean solution(String s) {
-    int cnt = 0;
-    for (char c : s.toCharArray()) {
-      if (c == '(') {
-        cnt++;
-      }  else if (c == ')') {
-        if (cnt-- == 0) {
-          return false;
-        }
-      }
-    }
-    return cnt == 0;
-  }
+  public boolean solution(String s) {
+    char[] charArray = s.toCharArray();
+    Stack<Character> stack = new Stack<>();
 
-  public static void main(String[] args) {
-    System.out.println(sol("()"));
-    System.out.println(sol("(())()"));
-    System.out.println(sol("(()("));
-  }
-
-  static boolean sol(String S) {
-    Stack<Character> objects = new Stack<>();
-    for (char c : S.toCharArray()) {
-      if (c == '(') {
-        objects.push(c);
-      } else  if (c == ')') {
-        if (objects.isEmpty()) {
+    for (int i = 0; i < charArray.length; i++) {
+      if (stack.isEmpty()) {
+        if (charArray[i] == ')') {
           return false;
         }
 
-        objects.pop();
+        stack.push(charArray[i]);
+        continue;
+      }
+
+      if (stack.peek() == '(' && charArray[i] == ')') {
+        stack.pop();
+      } else {
+        stack.push(charArray[i]);
       }
     }
 
-    return objects.empty();
+    return stack.isEmpty();
   }
 }
