@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.direct;
+package practice.others.road_to_ga.restclient.direct;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import practice.others.road_to_ga.dto.Post;
+import practice.others.road_to_ga.restclient.dto.Post;
 
 import java.util.List;
 

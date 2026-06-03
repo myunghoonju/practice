@@ -1,10 +1,10 @@
-package practice.others.road_to_ga.registrar;
+package practice.others.road_to_ga.restclient.registrar;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import practice.others.road_to_ga.dto.Post;
+import practice.others.road_to_ga.restclient.dto.Post;
 
 import java.util.List;
 

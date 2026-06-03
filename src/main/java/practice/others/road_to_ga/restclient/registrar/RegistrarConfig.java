@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.registrar;
+package practice.others.road_to_ga.restclient.registrar;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.proxy;
+package practice.others.road_to_ga.restclient.proxy;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

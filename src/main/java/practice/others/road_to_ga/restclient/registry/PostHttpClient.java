@@ -1,16 +1,16 @@
-package practice.others.road_to_ga.proxy;
+package practice.others.road_to_ga.restclient.registry;
 
 import org.springframework.resilience.annotation.ConcurrencyLimit;
 import org.springframework.resilience.annotation.Retryable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
-import practice.others.road_to_ga.dto.Post;
+import practice.others.road_to_ga.restclient.dto.Post;
 
 import java.util.List;
 
 @HttpExchange("/posts")
-interface PostHttpClient {
+public interface PostHttpClient {
 
     @GetExchange
     @Retryable(maxRetries = 2, delay = 200, multiplier = 2.0, maxDelay = 1000)

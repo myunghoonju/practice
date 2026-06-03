@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.direct;
+package practice.others.road_to_ga.restclient.direct;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.retry.RetryException;
@@ -6,7 +6,7 @@ import org.springframework.core.retry.RetryPolicy;
 import org.springframework.core.retry.RetryTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import practice.others.road_to_ga.dto.Post;
+import practice.others.road_to_ga.restclient.dto.Post;
 
 import java.time.Duration;
 import java.util.List;

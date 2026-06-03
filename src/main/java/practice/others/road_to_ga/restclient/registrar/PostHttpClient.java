@@ -1,11 +1,11 @@
-package practice.others.road_to_ga.registry;
+package practice.others.road_to_ga.restclient.registrar;
 
 import org.springframework.resilience.annotation.ConcurrencyLimit;
 import org.springframework.resilience.annotation.Retryable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
-import practice.others.road_to_ga.dto.Post;
+import practice.others.road_to_ga.restclient.dto.Post;
 
 import java.util.List;
 

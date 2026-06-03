@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.registrar;
+package practice.others.road_to_ga.restclient.registrar;
 
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;

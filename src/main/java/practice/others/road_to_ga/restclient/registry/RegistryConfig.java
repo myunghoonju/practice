@@ -1,4 +1,4 @@
-package practice.others.road_to_ga.registry;
+package practice.others.road_to_ga.restclient.registry;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
