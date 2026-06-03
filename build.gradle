@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.springframework.integration:spring-integration-redis'
 
     implementation 'org.aspectj:aspectjweaver'
+    implementation 'org.apache.httpcomponents.client5:httpclient5'
     implementation 'javax.cache:cache-api:1.1.1'
     implementation 'org.ehcache:ehcache:3.10.8'
     implementation 'org.ehcache:ehcache-clustered:3.10.8'
