@@ -2,7 +2,6 @@ package practice.mockito.bdd;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
@@ -12,6 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.never;
+
+import practice.others.mockito.bdd.PhoneBookRepository;
+import practice.others.mockito.bdd.PhoneBookService;
 
 @ExtendWith(MockitoExtension.class)
 public class PhoneBookServiceTest {

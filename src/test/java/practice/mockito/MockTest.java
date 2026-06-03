@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,11 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import practice.others.mockito.DatabaseDAO;
+import practice.others.mockito.Dictionary;
+import practice.others.mockito.NetworkDAO;
+import practice.others.mockito.RecordService;
 
 @ExtendWith(MockitoExtension.class)
 public class MockTest {
