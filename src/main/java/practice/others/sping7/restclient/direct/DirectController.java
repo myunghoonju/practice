@@ -20,7 +20,7 @@ class DirectController {
         this.postService = postService;
     }
 
-    @GetMapping("/posts")
+    @GetMapping(path = "/posts", version = "1.0+")
     List<Post> getPosts() {
         try {
             return postService.getPosts();
@@ -29,7 +29,7 @@ class DirectController {
         }
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping(path = "/posts/{id}", version = "1.0+")
     Post getPost(@PathVariable Long id) {
         try {
             return postService.getPost(id);

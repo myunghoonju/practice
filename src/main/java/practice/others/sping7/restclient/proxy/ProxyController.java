@@ -18,12 +18,12 @@ class ProxyController {
         this.postHttpClient = postHttpClient;
     }
 
-    @GetMapping("/posts")
+    @GetMapping(path = "/posts", version = "1.0+")
     List<Post> getPosts() {
         return postHttpClient.getPosts();
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping(path = "/posts/{id}", version = "1.0+")
     Post getPost(@PathVariable Long id) {
         return postHttpClient.getPost(id);
     }

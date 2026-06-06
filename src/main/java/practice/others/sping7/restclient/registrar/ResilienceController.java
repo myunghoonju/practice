@@ -20,22 +20,22 @@ class ResilienceController {
         this.userHttpClient = userHttpClient;
     }
 
-    @GetMapping("/posts")
+    @GetMapping(path = "/posts", version = "0.1")
     List<Post> getPosts() {
         return postHttpClient.getPosts();
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping(path = "/posts/{id}", version = "0.1")
     Post getPost(@PathVariable Long id) {
         return postHttpClient.getPost(id);
     }
 
-    @GetMapping("/users")
+    @GetMapping(path = "/users", version = "0.1")
     List<UserHttpClient.User> getUsers() {
         return userHttpClient.getUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping(path = "/users/{id}", version = "0.1")
     UserHttpClient.User getUser(@PathVariable Long id) {
         return userHttpClient.getUser(id);
     }
