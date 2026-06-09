@@ -31,6 +31,7 @@ public class LC1059 {
     return true;
   }
 
+  @SuppressWarnings("unchecked")
   private List<Integer>[] graph(int n, int[][] edges) {
     List<Integer>[] graph = new ArrayList[n];
     for (int i = 0; i < n; i++) {

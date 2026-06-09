@@ -18,7 +18,7 @@ import reactor.test.StepVerifier;
 
 public class BlockingToReactiveSampleTest {
 
-    BlockingRepository repository = new BlockingUserRepository();
+    BlockingRepository<User> repository = new BlockingUserRepository();
 
     @Test
     void select() {

@@ -21,7 +21,7 @@ public class ReceiveDatas {	//--- request information ------//
 
   public ReceiveDatas(){
     if(list == null){
-      list = new ArrayList();
+      list = new ArrayList<>();
     }
   }
 

@@ -11,6 +11,6 @@ public class ApiVersioningConfig implements WebMvcConfigurer {
     public void configureApiVersioning(ApiVersionConfigurer configurer) {
         configurer
                 .useRequestHeader("API-Version")
-                .defaultVersion("1.0");
+                .setDefaultVersion("1.0");
     }
 }
