@@ -1,73 +1,54 @@
 package practice.algorithm.prog;
 
-import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 public class Q42628 {
 
-  private static class DoublePriorityQueue {
-    private int size = 0;
-    private final PriorityQueue<Integer> min = new PriorityQueue<>();
-    private final PriorityQueue<Integer> max = new PriorityQueue<>((left, right) -> right - left);
-
-    public void add(int value) {
-      min.add(value);
-      max.add(value);
-      size++;
-    }
-
-    public void removeMax() {
-      if (size == 0) return;
-      max.poll();
-      if (--size == 0) {
-        max.clear();
-        min.clear();
-      }
-    }
-
-    public void removeMin() {
-      if (size == 0) return;
-      min.poll();
-      if (--size == 0) {
-        max.clear();
-        min.clear();
-      }
-    }
-
-    public int max() {
-      if (size == 0) {
-        return 0;
+  public int[] solution(String[] operations) {
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    for (String operation : operations) {
+      if (digit(operation)) {
+        map.merge(value(operation), 1, Integer::sum);
+        continue;
       }
 
-      return max.peek();
-    }
-
-    public int min() {
-      if (size == 0) {
-        return 0;
+      if (map.isEmpty()) {
+        continue;
       }
 
-      return min.peek();
+      if (head(operation)) {
+        removeKey(map, map.lastKey());
+        continue;
+      }
+
+      removeKey(map, map.firstKey());
     }
+
+    if (map.isEmpty()) {
+      return new int[]{0, 0};
+    }
+
+    return new int[]{map.lastKey(), map.firstKey()};
   }
 
-  public int[] solution(String[] operations) {
-    DoublePriorityQueue dpq = new DoublePriorityQueue();
-    for (String op : operations) {
-      String[] token = op.split(" ");
-      String command = token[0];
-      String value = token[1];
-      switch (command) {
-        case "I" -> dpq.add(Integer.parseInt(value));
-        case "D" -> {
-          if (value.equals("1")) {
-            dpq.removeMax();
-          } else {
-            dpq.removeMin();
-          }
-        }
-      }
+  private void removeKey(TreeMap<Integer, Integer> map, int key) {
+    if (map.get(key) == 1) {
+      map.remove(key);
+      return;
     }
 
-    return new  int[]{dpq.max(), dpq.min()};
+    map.put(key, map.get(key) - 1);
+  }
+
+  private Integer value(String el) {
+    return Integer.valueOf(el.split(" ")[1]);
+  }
+
+  private boolean digit(String op) {
+    return "I".equals(op.split(" ")[0]);
+  }
+
+  private boolean head(String op) {
+    return "1".equals(op.split(" ")[1]);
   }
 }
