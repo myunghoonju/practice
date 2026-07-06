@@ -2,52 +2,42 @@ package practice.algorithm.prog;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Q42627 {
 
-  private static class Job {
-
-    public final int start;
-
-    public final int duration;
-
-    public Job(int start, int duration) {
-      this.start = start;
-      this.duration = duration;
-    }
-  }
-
   public int solution(int[][] jobs) {
-    Job[] jobArr = new Job[jobs.length];
-    for (int i = 0; i < jobs.length; i++) {
-      jobArr[i] = new Job(jobs[i][0], jobs[i][1]);
-    }
-
-    Arrays.sort(jobArr, Comparator.comparing(job -> job.start));
-    Queue<Job> q = new LinkedList<>(Arrays.asList(jobArr));
-    PriorityQueue<Job> pq = new PriorityQueue<>(Comparator.comparingInt(job -> job.duration));
-
-    int exec = 0;
+    // current time
     int time = 0;
+    // index of jobs
+    int idx = 0;
+    // total sum of waiting time
+    int total = 0;
 
-    while (!q.isEmpty() || !pq.isEmpty()) {
-      while (!q.isEmpty() && q.peek().start <= time) {
-        pq.offer(q.poll());
+    // asc sort based on request time
+    Arrays.sort(jobs, Comparator.comparingInt(a -> a[0]));
+    // sorted queue based on shorter work time
+    PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+
+    while (idx < jobs.length || !queue.isEmpty()) {
+      while (idx <jobs.length && jobs[idx][0] <= time) {
+        queue.add(jobs[idx++]);
       }
 
-      if (pq.isEmpty()) {
-        time = q.peek().start;
+      // if queue's empty then jump to next job's request time
+      if (queue.isEmpty()) {
+        time = jobs[idx][0];
         continue;
       }
 
-      Job job = pq.poll();
-      exec += time + job.duration - job.start;
-      time += job.duration;
-
+      //get shortest work time job
+      int[] job = queue.poll();
+      // add
+      time += job[1];
+      // accumulate waiting time(work time - requested time)
+      total += time - job[0];
     }
-    return exec / jobArr.length;
+
+    return total / jobs.length;
   }
 }
