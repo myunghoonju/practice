@@ -6,19 +6,17 @@ import java.util.Comparator;
 public class Q42884 {
 
   public int solution(int[][] routes) {
-    Arrays.sort(routes, Comparator.comparing(r -> r[1]));
+    int ans = 0;
+    Arrays.sort(routes, Comparator.comparingInt(b -> b[1]));
 
-    int cnt = 0;
-    int camera = Integer.MIN_VALUE;
+    int last = Integer.MIN_VALUE;
     for (int[] route : routes) {
-      if (camera >= route[0] && camera <= route[1]) {
-        continue;
+      if (last < route[0]) {
+        last = route[1];
+        ans++;
       }
-
-      camera = route[1];
-      cnt++;
     }
 
-    return cnt;
+    return ans;
   }
 }
