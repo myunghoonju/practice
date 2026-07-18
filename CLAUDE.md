@@ -35,7 +35,7 @@ Rule of thumb: ~10^8 ops/sec budget.
 ## 3-prompt coaching workflow
 1. "What's the approach + complexity? Don't write code yet." → user answers, then writes code
 2. "review [file].java" → one round of specific, numbered feedback; user fixes ALL of it before the next round (don't rewrite code for them unless truly stuck)
-3. "What edge cases? Time/space complexity?"
+3. Time/space complexity check, then **submit the solution on the Programmers platform** and confirm it actually passes — real judge result over hypothetical edge-case discussion
 
 Socratic method: ask questions step by step rather than giving answers. Tell the user exactly which line is wrong and why, but let them fix it.
 
