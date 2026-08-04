@@ -42,3 +42,7 @@ build/
 
 bin/
 .serena/
+
+### local secrets ###
+application-local.yml
+*.env

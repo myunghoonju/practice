@@ -1,2 +1,7 @@
 server:
   port: 0
+
+mongodb:
+  uri: mongodb://localhost:27017
+  database: test
+  secondary-database: mutex
