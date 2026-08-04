@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.integration:spring-integration-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
     implementation 'org.aspectj:aspectjweaver'
     implementation 'org.apache.httpcomponents.client5:httpclient5'
