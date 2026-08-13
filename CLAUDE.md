@@ -48,6 +48,47 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 - **Mid**: stack/queue, sort, Dijkstra, priority queue/heap, graph, tree, permutation/combination, DP, two-pointer/sliding window
 - **Low**: topological sort, backtracking, linked list
 
+## Current status & plan (last updated 2026-08-13 — refresh dates/checkmarks as they change, don't treat as frozen)
+
+### PCCP 79제 (프로그래머스, 길벗 커리큘럼 — https://github.com/gilbutITbook/080337)
+71/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
+
+**미도전 (8)**
+- 12946 하노이의 탑 (5장 재귀)
+- 43163 단어 변환 (12장 구현)
+- 14장 PCCP모의 15008 세트: 121684 체육대회, 121685 유전법칙, 121686 운영체제
+- 14장 PCCP모의 15009 세트: 121688 신입사원 교육, 121689 카페 확장, 121690 보물 지도
+
+**우선순위 (재도전 신뢰도 + 시험 빈도 기준으로 최적화됨)**
+1. 저신뢰 재도전 (완료 처리됐지만 당시 힌트를 많이 받아 재발 가능성 높음): 68936 쿼드압축 후 개수 세기(6라운드 소크라틱+코드 스켈레톤 필요했음), 64064 불량 사용자(백트래킹 파라미터 3회 오연결), 121687 실습용 로봇(pass-by-value 버그, 3라운드 리뷰)
+2. 공백 메우기: 12946 하노이의 탑 → 43163 단어 변환
+3. PCCP모의 풀세트 타임어택 (시험 임박까지 미루지 말고 지금 진행 — 공백도 메우고 실전 감각도 확보): 15008 세트(121683+84+85+86) 전체를 실제 제한시간으로 한 번에, 이어서 15009 세트(121687+88+89+90)
+4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 71개 전수 복습은 비효율
+
+### LeetCode 75 (49/75 완료, Premium 계정 보유)
+**확정 미완료 17문제** (2026-08-13 스크린샷 대비 확인, leetcode.com/problems/ 하단 slug):
+Heap/PQ — smallest-number-in-infinite-set, maximum-subsequence-score, total-cost-to-hire-k-workers
+Binary Search — successful-pairs-of-spells-and-potions, find-peak-element, koko-eating-bananas
+DP 1D — n-th-tribonacci-number, domino-and-tromino-tiling
+DP 2D — longest-common-subsequence, best-time-to-buy-and-sell-stock-with-transaction-fee, edit-distance
+Bit 조작 — minimum-flips-to-make-a-or-b-equal-to-c
+Trie — implement-trie-prefix-tree, search-suggestions-system
+Intervals — non-overlapping-intervals, minimum-number-of-arrows-to-burst-balloons
+Monotonic Stack — online-stock-span
+
+앞쪽 13개 카테고리(Array/String~Graphs-BFS, 48문제)는 스크린샷상 전부 체크였지만 앱의 49/75 카운터와 대조하면 ~9문제 오차 가능성 있음 — 사이트에서 재확인 필요, 확정 목록 아님.
+
+### Grind75 (다음 단계, 아직 시작 안 함)
+https://www.techinterviewhandbook.org/grind75 — 주/시간 스케줄러 보유, 최대 169문제로 확장 가능. LeetCode 75와 겹치는 문제가 많으므로 위 17문제부터 끝낸 뒤 시작할 것 (중복 스케줄링 방지).
+
+### 이 섹션을 최신으로 유지하는 법
+이 파일은 저장소에 커밋되므로 어느 머신의 Claude Code든 아래 규칙대로 스스로 갱신할 것 — 사용자에게 갱신 방법을 따로 묻지 말고 다음을 트리거로 삼는다.
+
+- **PCCP 79제는 저장소에서 100% 도출 가능함** — 신뢰하지 말고 매번 다시 계산할 것: `ls src/main/java/practice/algorithm/prog/`로 파일 목록을 뽑아 위 79제 챕터 표(문제 번호 기준)와 대조해서 "미도전" 목록과 N/79 카운트를 재계산한다. 3-prompt 워크플로 3단계(Programmers 제출 PASS 확인)가 끝나면, 그 문제를 미도전 목록에서 빼고 카운트를 올린 뒤 커밋한다.
+- **LeetCode 75 / Grind75는 저장소에서 도출 불가능함** (외부 사이트 진행률) — "last updated" 날짜가 대략 1~2주 이상 지났거나 사용자가 새 스크린샷/진행률을 주면, 그 시점에 위 목록을 통째로 다시 쓴다 (기존 항목에 덧붙이지 말 것 — 스크린샷마다 전체 상태를 다시 읽는 게 더 정확함).
+- **갱신할 때마다 "last updated" 날짜를 오늘 날짜로 바꾸고, `git commit`까지 완료한다** (push는 사용자 확인 후). 커밋 없이 로컬에만 남기면 다른 머신에서 보이지 않아 이 파일을 저장소에 두는 의미가 없어진다.
+- 이 섹션의 우선순위 로직(저신뢰 재도전 → 공백 메우기 → 모의고사 → 패턴 보강)이 바뀔 만한 새로운 신호(예: 특정 문제에서 유독 힘들어함, 새 플랫폼 추가)가 생기면 순위 자체도 다시 정렬한다 — 고정된 리스트가 아니라 살아있는 계획으로 취급할 것.
+
 ## Goal framing
 목표는 1등이 아니라 PASS. Get correctness passing first; worry about the efficiency tier of the test suite second.
 
