@@ -39,6 +39,10 @@ Rule of thumb: ~10^8 ops/sec budget.
 
 Socratic method: ask questions step by step rather than giving answers. Tell the user exactly which line is wrong and why, but let them fix it.
 
+## Session defaults (standing preferences — don't ask every session, just apply these)
+- **Default mode is 코칭 모드** (Socratic, step-by-step questions), not timed/hint-free. Only switch to a timed, no-hints mode if the user explicitly asks for it in that session.
+- **Default next problem: don't ask, just pick it.** At the start of a practice session, take the top item from "Current status & plan"'s priority list below, state which one you're starting and why in one sentence, then begin step 1 directly. Only ask if the priority list is exhausted or the user's own message already implies a different problem.
+
 ## Debugging technique
 - **Recursion**: log on entry and on return, verify the base case fires, indent by depth to visualize the call stack.
 - **BFS/DFS**: print queue/stack state, current node, and the visited array at each step — only what's relevant to the bug.
