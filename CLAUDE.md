@@ -52,7 +52,7 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 - **Mid**: stack/queue, sort, Dijkstra, priority queue/heap, graph, tree, permutation/combination, DP, two-pointer/sliding window
 - **Low**: topological sort, backtracking, linked list
 
-## Current status & plan (last updated 2026-08-20 — refresh dates/checkmarks as they change, don't treat as frozen)
+## Current status & plan (last updated 2026-08-21 — refresh dates/checkmarks as they change, don't treat as frozen)
 
 ### PCCP 79제 (프로그래머스, 길벗 커리큘럼 — https://github.com/gilbutITbook/080337)
 71/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
@@ -64,7 +64,7 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 - 14장 PCCP모의 15009 세트: 121688 신입사원 교육, 121689 카페 확장, 121690 보물 지도
 
 **우선순위 (재도전 신뢰도 + 시험 빈도 기준으로 최적화됨)**
-1. 저신뢰 재도전 (완료 처리됐지만 당시 힌트를 많이 받아 재발 가능성 높음): 64064 불량 사용자(백트래킹 파라미터 3회 오연결), 121687 실습용 로봇(pass-by-value 버그, 3라운드 리뷰) — 68936 쿼드압축 후 개수 세기는 2026-08-20 재도전 PASS (2라운드 리뷰로 단축, 신뢰도 회복되어 목록에서 제외)
+1. 저신뢰 재도전 (완료 처리됐지만 당시 힌트를 많이 받아 재발 가능성 높음): **64064 불량 사용자 — 2026-08-21 재도전 진행 중** (백트래킹 파라미터 3회 오연결 이력, 다른 머신 세션은 이 문제를 건너뛰고 121687로 이어갈 것), 121687 실습용 로봇(pass-by-value 버그, 3라운드 리뷰) — 68936 쿼드압축 후 개수 세기는 2026-08-20 재도전 PASS (2라운드 리뷰로 단축, 신뢰도 회복되어 목록에서 제외)
 2. 공백 메우기: 12946 하노이의 탑 → 43163 단어 변환
 3. PCCP모의 풀세트 타임어택 (시험 임박까지 미루지 말고 지금 진행 — 공백도 메우고 실전 감각도 확보): 15008 세트(121683+84+85+86) 전체를 실제 제한시간으로 한 번에, 이어서 15009 세트(121687+88+89+90)
 4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 71개 전수 복습은 비효율
