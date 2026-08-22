@@ -2,83 +2,58 @@ package practice.algorithm.prog;
 
 public class Q121687 {
 
-  // 0 = north 1 = east 2 = south 3 = west
+  enum Direction {
+    UP(0, 1),
+    RIGHT(1, 0),
+    DOWN(0, -1),
+    LEFT(-1, 0)
+    ;
+
+    private final int dx;
+    private final int dy;
+
+    Direction(int dx, int dy) {
+      this.dx = dx;
+      this.dy = dy;
+    }
+  }
+
+  record State(int x, int y, Direction direction) {}
+
+  public State move(State state, String command) {
+    int x = state.x();
+    int y = state.y();
+    Direction direction = state.direction();
+
+    if (command.equals("R")) {
+      // TODO: direction을 오른쪽으로 회전시키기
+      direction = Direction.values()[(direction.ordinal() + 1) % 4];
+    }
+
+    if (command.equals("L")) {
+      // TODO: direction을 왼쪽으로 회전시키기
+      direction = Direction.values()[(direction.ordinal() - 1 + 4) % 4];
+
+    }
+
+    if (command.equals("G")) {
+      x = x + direction.dx;
+      y = y + direction.dy;
+    }
+
+    if (command.equals("B")) {
+      x = x - direction.dx;
+      y = y - direction.dy;
+    }
+
+    return new State(x, y, direction);
+  }
+
   public int[] solution(String command) {
-    int point = 0;
-    int[] answer = new int[] {0, 0};
-    String[] orders = command.split("");
-    for (String order : orders) {
-      point = direct(point, order);
-      move(answer, point, order);
+    State state = new State(0, 0, Direction.UP);
+    for (String cmd : command.split("")) {
+      state = move(state, cmd);
     }
-
-    return answer;
-  }
-
-  private int direct(int point, String order) {
-    if ("R".equals(order)) {
-      if (point == 3) {
-        return 0;
-      }
-
-      point += 1;
-    }
-
-    if ("L".equals(order)) {
-      if (point == 0) {
-        return 3;
-      }
-
-      point -= 1;
-    }
-
-    return point;
-  }
-
-  private void move(int[] answer, int point, String order) {
-    int x = answer[0];
-    int y = answer[1];
-    if (point == 0) {
-      if ("G".equals(order)) {
-        y += 1;
-      }
-
-      if ("B".equals(order)) {
-        y -= 1;
-      }
-    }
-
-    if (point == 1) {
-      if ("G".equals(order)) {
-        x += 1;
-      }
-
-      if ("B".equals(order)) {
-        x -= 1;
-      }
-    }
-
-    if (point == 2) {
-      if ("G".equals(order)) {
-        y -= 1;
-      }
-
-      if ("B".equals(order)) {
-        y += 1;
-      }
-    }
-
-    if (point == 3) {
-      if ("G".equals(order)) {
-        x -= 1;
-      }
-
-      if ("B".equals(order)) {
-        x += 1;
-      }
-    }
-
-    answer[0] = x;
-    answer[1] = y;
+    return new int[] {state.x(), state.y()};
   }
 }
