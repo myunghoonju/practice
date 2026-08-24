@@ -39,7 +39,9 @@ Rule of thumb: ~10^8 ops/sec budget.
 
 Socratic method: ask questions step by step rather than giving answers. Tell the user exactly which line is wrong and why, but let them fix it.
 
-**Implementation bottleneck (found 2026-08-22, 121687/68936 재도전)**: the user's real gap is **design→code translation**, not algorithmic reasoning — they reliably self-correct on approach/pseudocode with Socratic questions alone, but stall turning a confirmed-correct design into actual Java. Once the design is confirmed right, don't loop more than ~2 Socratic rounds on a pure implementation stall — show the code directly. Sessions should deliberately favor implementation reps over further design/concept discussion.
+**Implementation bottleneck (found 2026-08-22, 121687/68936 재도전; reconfirmed 2026-08-24 on 43163)**: the user's real gap is **design→code translation**, not algorithmic reasoning — they reliably self-correct on approach/pseudocode with Socratic questions alone, but stall turning a confirmed-correct design into actual Java. Once the design is confirmed right, don't loop more than ~2 Socratic rounds on a pure implementation stall — show the code directly. Sessions should deliberately favor implementation reps over further design/concept discussion.
+
+**43163 note (2026-08-24)**: user independently derived the BFS-on-graph model and why BFS guarantees shortest distance via Socratic questions, but needed 4+ rounds and a direct code drop to get from "track depth per word" to a working `Map<String,Integer> depth` BFS loop — same pattern as 121687. User voiced real concern about independent solve ability given an actual coding test the next day (2026-08-25) — worth a cold (no-hint) re-attempt of 43163 after that date to confirm the gap has closed, same as 68936/64064/121687/12946 redos.
 
 ## Session defaults (standing preferences — don't ask every session, just apply these)
 - **Default mode is 코칭 모드** (Socratic, step-by-step questions), not timed/hint-free. Only switch to a timed, no-hints mode if the user explicitly asks for it in that session.
@@ -54,21 +56,22 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 - **Mid**: stack/queue, sort, Dijkstra, priority queue/heap, graph, tree, permutation/combination, DP, two-pointer/sliding window
 - **Low**: topological sort, backtracking, linked list
 
-## Current status & plan (last updated 2026-08-24, 12946 하노이의 탑 PASS 반영 — refresh dates/checkmarks as they change, don't treat as frozen)
+## Current status & plan (last updated 2026-08-24, 43163 단어 변환 PASS 반영, 실제 코딩테스트 2026-08-25 확정 — refresh dates/checkmarks as they change, don't treat as frozen)
+
+**⚠️ 실제 코딩테스트가 2026-08-25(내일)로 확정됨.** 그 전까지는 새 챕터 공백 메우기보다 이미 통과한 문제 복습/자신감 확보를 우선할 것. 시험 전날 밤에 낯선 새 유형을 처음 붙잡는 건 비효율 — 시험 이후 결과를 반영해 이 섹션 우선순위를 다시 정렬한다.
 
 ### PCCP 79제 (프로그래머스, 길벗 커리큘럼 — https://github.com/gilbutITbook/080337)
-72/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
+73/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
 
-**미도전 (7)**
-- 43163 단어 변환 (12장 구현)
+**미도전 (6)**
 - 14장 PCCP모의 15008 세트: 121684 체육대회, 121685 유전법칙, 121686 운영체제
 - 14장 PCCP모의 15009 세트: 121688 신입사원 교육, 121689 카페 확장, 121690 보물 지도
 
 **우선순위 (재도전 신뢰도 + 시험 빈도 기준으로 최적화됨)**
 1. 저신뢰 재도전 목록 전원 소진: 68936 쿼드압축 후 개수 세기(2026-08-20 PASS), 64064 불량 사용자(2026-08-21 PASS), 121687 실습용 로봇(2026-08-22 PASS, 상세는 아래 노트) — 모두 재도전 완료, 신뢰도 회복
-2. 공백 메우기: 12946 하노이의 탑(2026-08-24 PASS, 상세는 아래 노트) → 43163 단어 변환
+2. 공백 메우기: 12946 하노이의 탑(2026-08-24 PASS) → 43163 단어 변환(2026-08-24 PASS, 상세는 아래 노트) — 공백 메우기 완료
 3. PCCP모의 풀세트 타임어택 (시험 임박까지 미루지 말고 지금 진행 — 공백도 메우고 실전 감각도 확보): 15008 세트(121683+84+85+86) 전체를 실제 제한시간으로 한 번에, 이어서 15009 세트(121687+88+89+90)
-4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 72개 전수 복습은 비효율
+4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 73개 전수 복습은 비효율
 
 ### LeetCode 75 (49/75 완료, Premium 계정 보유)
 **확정 미완료 17문제** (2026-08-13 스크린샷 대비 확인, leetcode.com/problems/ 하단 slug):
