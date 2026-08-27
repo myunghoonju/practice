@@ -74,8 +74,8 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 73개 전수 복습은 비효율
 
 ### LeetCode 75 (49/75 완료, Premium 계정 보유)
-**확정 미완료 17문제** (2026-08-13 스크린샷 대비 확인, leetcode.com/problems/ 하단 slug):
-Heap/PQ — smallest-number-in-infinite-set, maximum-subsequence-score, total-cost-to-hire-k-workers
+**확정 미완료 16문제** (2026-08-13 스크린샷 대비 확인, leetcode.com/problems/ 하단 slug; smallest-number-in-infinite-set 2026-08-27 PASS로 제외):
+Heap/PQ — maximum-subsequence-score, total-cost-to-hire-k-workers
 Binary Search — successful-pairs-of-spells-and-potions, find-peak-element, koko-eating-bananas
 DP 1D — n-th-tribonacci-number, domino-and-tromino-tiling
 DP 2D — longest-common-subsequence, best-time-to-buy-and-sell-stock-with-transaction-fee, edit-distance
