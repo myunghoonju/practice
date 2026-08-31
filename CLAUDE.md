@@ -56,19 +56,19 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 - **Mid**: stack/queue, sort, Dijkstra, priority queue/heap, graph, tree, permutation/combination, DP, two-pointer/sliding window
 - **Low**: topological sort, backtracking, linked list
 
-## Current status & plan (last updated 2026-08-27, 121684 체육대회 PASS 반영, 실제 코딩테스트 2026-08-25는 이미 지남 — refresh dates/checkmarks as they change, don't treat as frozen)
+## Current status & plan (last updated 2026-08-31, 121685 유전법칙 PASS 반영, 실제 코딩테스트 2026-08-25는 이미 지남 — refresh dates/checkmarks as they change, don't treat as frozen)
 
 ### PCCP 79제 (프로그래머스, 길벗 커리큘럼 — https://github.com/gilbutITbook/080337)
-74/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
+75/79 파일 존재. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
 
-**미도전 (5)**
-- 14장 PCCP모의 15008 세트: 121685 유전법칙, 121686 운영체제
+**미도전 (4)**
+- 14장 PCCP모의 15008 세트: 121686 운영체제
 - 14장 PCCP모의 15009 세트: 121688 신입사원 교육, 121689 카페 확장, 121690 보물 지도
 
 **우선순위 (재도전 신뢰도 + 시험 빈도 기준으로 최적화됨)**
 1. 저신뢰 재도전 목록 전원 소진: 68936 쿼드압축 후 개수 세기(2026-08-20 PASS), 64064 불량 사용자(2026-08-21 PASS), 121687 실습용 로봇(2026-08-22 PASS, 상세는 아래 노트) — 모두 재도전 완료, 신뢰도 회복
 2. 공백 메우기: 12946 하노이의 탑(2026-08-24 PASS) → 43163 단어 변환(2026-08-24 PASS, 상세는 아래 노트) — 공백 메우기 완료
-3. PCCP모의 풀세트 타임어택 (공백도 메우고 실전 감각도 확보) — 진행 중: 121684 PASS. 15008 세트(121683+84+85+86) 마저 완료 후, 15009 세트(121687+88+89+90)
+3. PCCP모의 풀세트 타임어택 (공백도 메우고 실전 감각도 확보) — 진행 중: 121684, 121685 PASS. 15008 세트는 121686만 남음 → 완료 후 15009 세트(121687+88+89+90)
 4. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 73개 전수 복습은 비효율
 
 ### LeetCode 75 (49/75 완료, Premium 계정 보유)
