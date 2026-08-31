@@ -12,11 +12,6 @@ public class Q121685 {
     return answer;
   }
 
-  private String[] quarter(int value) {
-    String el = Integer.toString(value, 4);
-    return el.split("");
-  }
-
   private String find(int n, int p) {
     int steps = n - 1;
     int values = p - 1;
