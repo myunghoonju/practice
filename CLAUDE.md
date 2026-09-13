@@ -39,13 +39,18 @@ Rule of thumb: ~10^8 ops/sec budget.
 
 Socratic method: ask questions step by step rather than giving answers. Tell the user exactly which line is wrong and why, but let them fix it.
 
-**Implementation bottleneck (found 2026-08-22, 121687/68936 재도전; reconfirmed 2026-08-24 on 43163)**: the user's real gap is **design→code translation**, not algorithmic reasoning — they reliably self-correct on approach/pseudocode with Socratic questions alone, but stall turning a confirmed-correct design into actual Java. Once the design is confirmed right, don't loop more than ~2 Socratic rounds on a pure implementation stall — show the code directly. Sessions should deliberately favor implementation reps over further design/concept discussion.
+**Implementation bottleneck (found 2026-08-22, 121687/68936 재도전; reconfirmed 2026-08-24 on 43163, 2026-09-03 on 121686, 2026-09-13 on 121690)**: the user's real gap is **design→code translation**, not algorithmic reasoning — they reliably self-correct on approach/pseudocode with Socratic questions alone, but stall turning a confirmed-correct design into actual Java. Once the design is confirmed right, don't loop more than ~2 Socratic rounds on a pure implementation stall — show the code directly. Sessions should deliberately favor implementation reps over further design/concept discussion.
 
 **43163 note (2026-08-24)**: user independently derived the BFS-on-graph model and why BFS guarantees shortest distance via Socratic questions, but needed 4+ rounds and a direct code drop to get from "track depth per word" to a working `Map<String,Integer> depth` BFS loop — same pattern as 121687. User voiced real concern about independent solve ability given an actual coding test the next day (2026-08-25) — worth a cold (no-hint) re-attempt of 43163 after that date to confirm the gap has closed, same as 68936/64064/121687/12946 redos.
 
+**Methodology change (2026-09-13, after 121690)**: relying on "someday cold re-attempt" wasn't closing the gap after 4 occurrences (121687, 121686, 43163, 121690) — the retry was too delayed and too infrequent to build the specific translation skill. Replaced with the daily structure below: an immediate, same-session implementation drill using already-confirmed designs, instead of deferring practice to an indefinite future retry.
+
 ## Session defaults (standing preferences — don't ask every session, just apply these)
 - **Default mode is 코칭 모드** (Socratic, step-by-step questions), not timed/hint-free. Only switch to a timed, no-hints mode if the user explicitly asks for it in that session.
-- **Default next problem: don't ask, just pick it.** At the start of a practice session, take the top item from "Current status & plan"'s priority list below, state which one you're starting and why in one sentence, then begin step 1 directly. Only ask if the priority list is exhausted or the user's own message already implies a different problem.
+- **Daily session = 2 phases, in order:**
+  1. **구현 전용 드릴 (10~15분, 고정)** — PCCP 구현 병목 백로그(121687, 121686, 43163, 121690) 중 아직 그날 안 한 문제 하나를 골라, 설계/pseudocode만 놓고 코드 없이 처음부터 재구현시킨다. 알고리즘을 새로 고민하게 하지 않는다 — 이미 맞다고 확인된 설계를 코드로 옮기는 것만 반복 연습. 전부 소진되면 이 단계는 생략.
+  2. **오늘의 새 문제** — PCCP 79제는 완주했으므로, 이제 LeetCode 75 미해결 16개(아래 LeetCode 75 섹션 참고)에서 하나를 골라 기존 4단계 소크라테스식으로 진행. LC75가 소진되면 Grind75로 전환.
+- **Default next problem: don't ask, just pick it.** At the start of each phase, pick the item yourself (per the rules above), state which one you're starting and why in one sentence, then begin directly. Only ask if the relevant list is exhausted or the user's own message already implies a different problem.
 
 ## Debugging technique
 - **Recursion**: log on entry and on return, verify the base case fires, indent by depth to visualize the call stack.
@@ -63,10 +68,11 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 
 **미도전 (0)** — 없음. 이제부터는 전량 재도전 사이클.
 
-**우선순위 (구현 전환 병목이 79제 완주 이후에도 계속 관측되어 재정렬됨)**
-1. **콜드 재도전 최우선**: 121687, 121686, 43163, 121690 — 전부 "설계는 독자 도출, 구현은 코드 직접 제공"으로 종료된 문제들. 힌트/코드 없이 처음부터 다시 풀어서 구현 전환 격차가 실제로 줄었는지 확인할 것 ([[feedback_implementation_bottleneck]]).
+**우선순위 (2026-09-13 데일리 2단계 구조 도입으로 재정렬 — Session defaults 참고)**
+1. **구현 전용 드릴 백로그** (매일 1개씩 소진): 121687, 121686, 43163, 121690 — 전부 "설계는 독자 도출, 구현은 코드 직접 제공"으로 종료된 문제들. 힌트/코드 없이 설계만 보고 처음부터 재구현시켜서 구현 전환 격차가 실제로 줄었는지 확인할 것 ([[feedback_implementation_bottleneck]]). 넷 다 소진되면 이 백로그는 비워짐 — 그 시점엔 드릴 단계 생략.
 2. 그 외 저신뢰 재도전(68936, 64064)·공백 메우기(12946)는 이미 재도전 완료, 신뢰도 회복됨
 3. 저빈도 챕터(3장 배열·7장 정렬·8장 이진탐색·10장 DP·11장 자료구조) 재도전은 시간 남을 때만 — 73개 전수 복습은 비효율
+4. **새 문제 공급원은 이제 LeetCode 75** (아래 섹션 미완료 16개) — PCCP 79제 자체는 완주라 신규 문제가 없음
 
 **121686 운영체제 노트 (2026-09-03)**: 1~3단계(문제이해/접근법/설계 — 우선순위 1~10 범위를 이용한 버킷+정렬+포인터 O(N) 설계)는 전부 독자 도출. 4단계(구현)에서 2라운드 피드백 후에도 자료구조(Map vs Queue, 키 순서)를 못 잡아 코드 직접 제공 — 121687/43163과 동일한 구현 전환 병목 패턴 재확인. 한 번 더 시간 남으면 힌트 없이 콜드 재도전 권장([[feedback_implementation_bottleneck]]).
 
@@ -76,8 +82,8 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 
 **121690 보물 지도 노트 (2026-09-13, 79제 전체 완주)**: 문제이해/접근법(BFS, N,M≤1000→O(N*M))은 독자 도출, 1차 코드 스켈레톤도 스스로 작성했으나 리뷰 1라운드(8개 피드백) 후 "코드로 구현하는 것이 어렵습니다"로 직접 실토 — 121687/121686/43163과 동일한 구현 전환 병목, 이번엔 사용자가 병목을 스스로 언어화함. 추가로 **코치가 제시한 설계도 틀림**: "함정은 매번 뛰어넘기 가능"으로 설계했다가 반례 테스트케이스(기댓값 -1, 실제 4)로 발견 — 실제 규칙은 "전체 경로에서 점프 능력 단 한 번만 사용 가능"(상태에 `usedJump` 플래그 추가해야 함). 121689와 같은 유형의 설계 오류. 사용자가 "통과의 중요성보다 실력 향상이 목적인데 구현을 또 못했다"고 직접 우려 표명 — 콜드 재도전 최우선순위로 격상 반영.
 
-### LeetCode 75 (49/75 완료, Premium 계정 보유)
-**확정 미완료 16문제** (2026-08-13 스크린샷 대비 확인, leetcode.com/problems/ 하단 slug; smallest-number-in-infinite-set 2026-08-27 PASS로 제외):
+### LeetCode 75 (50/75 완료, Premium 계정 보유 — 2026-09-13 재확인, 아래 16개 전원 미완료 그대로)
+**확정 미완료 16문제** (2026-09-13 스크린샷 대비 재확인 — 49→50 증가분은 이 16개 밖에서 발생, 목록 불변; leetcode.com/problems/ 하단 slug; smallest-number-in-infinite-set 2026-08-27 PASS로 제외):
 Heap/PQ — maximum-subsequence-score, total-cost-to-hire-k-workers
 Binary Search — successful-pairs-of-spells-and-potions, find-peak-element, koko-eating-bananas
 DP 1D — n-th-tribonacci-number, domino-and-tromino-tiling
