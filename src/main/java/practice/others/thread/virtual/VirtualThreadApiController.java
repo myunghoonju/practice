@@ -33,6 +33,8 @@ public class VirtualThreadApiController {
   @GetMapping("/api/speaker/{speaker}")
   public Speaker speaker(@PathVariable String speaker) throws InterruptedException {
     try (StructuredTaskScope<Object, Void> scope = open()) {
+      System.out.println("main controller tl: " + UserFilter.USER_TL.get());
+      System.out.println("main controller sv: " + UserFilter.USER_SV.get());
       Subtask<Talk> talk = scope.fork(() -> fakeClient.talk(speaker));
       Subtask<Information> info = scope.fork(() -> getBestInfo(speaker));
 
