@@ -14,15 +14,15 @@ java {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << '--enable-preview'
+    options.compilerArgs += ['--enable-preview', '--add-exports', 'java.base/jdk.internal.vm=ALL-UNNAMED']
 }
 
 tasks.withType(JavaExec).configureEach {
-    jvmArgs '--enable-preview'
+    jvmArgs '--enable-preview', '--add-exports', 'java.base/jdk.internal.vm=ALL-UNNAMED'
 }
 
 tasks.withType(Test).configureEach {
-    jvmArgs '--enable-preview'
+    jvmArgs '--enable-preview', '--add-exports', 'java.base/jdk.internal.vm=ALL-UNNAMED'
 }
 
 repositories {
