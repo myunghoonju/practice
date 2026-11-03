@@ -63,6 +63,10 @@ Socratic method: ask questions step by step rather than giving answers. Tell the
 
 ## Current status & plan (last updated 2026-09-13, 121690 보물 지도 PASS 반영, 78/79 -> 79/79, 79제 전체 완주 — refresh dates/checkmarks as they change, don't treat as frozen)
 
+### ▶ 다음 세션 재개 지점 (2026-11-03 기록 — 완료되면 이 블록 갱신/삭제)
+1. **구현 드릴**: `prog/Q121687_drill.java` (설계 주석 작성됨, `solution`은 비어 있음). 첫 단계는 `dx`/`dy` 배열 8칸 채우기만 할 것 (위→오른쪽→아래→왼쪽). 7주 공백 후 "감을 잃었다"고 말한 상태이므로 아주 작은 단계로 진행하고, 재설명 없이 바로 이 단계부터 시작.
+2. **새 문제**: LC1137 Tribonacci 3단계(pseudocode). 1~2단계 완료: bottom-up, 변수 3개, O(n)/O(1). n≤2 처리, 초기값, 변수 3개 갱신 순서를 주석으로 작성할 차례.
+
 ### PCCP 79제 (프로그래머스, 길벗 커리큘럼 — https://github.com/gilbutITbook/080337)
 79/79 파일 존재 — **전체 완주**. "파일 있음" ≠ "무감독 통과 능력" — 재도전도 정식 연습으로 취급할 것.
 
