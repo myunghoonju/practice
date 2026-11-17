@@ -20,7 +20,33 @@ package practice.algorithm.prog;
 public class Q121687_drill {
 
   public int[] solution(String command) {
-    // 여기에 구현
-    return null;
+    int[] dx = {0, 1, 0, -1};
+    int[] dy = {1, 0, -1, 0};
+    int x = 0;
+    int y = 0;
+    int dir = 0;
+    char[] arr = command.toCharArray();
+    for (char c : arr) {
+      if (c == 'L') {
+        dir = (dir + 3) % 4;
+      }
+
+      if (c == 'R') {
+        dir = (dir + 1) % 4;
+      }
+
+      if (c == 'G') {
+        x += dx[dir];
+        y += dy[dir];
+      }
+
+      if (c == 'B') {
+        x -= dx[dir];
+        y -= dy[dir];
+      }
+
+
+    }
+    return new int[] {x, y};
   }
 }
