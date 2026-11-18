@@ -1,5 +1,7 @@
 package practice.algorithm.prog;
 
+import java.util.*;
+
 /**
  * [구현 전용 드릴] PCCP 모의고사 2회 - 운영체제 (121686)
  * https://school.programmers.co.kr/learn/courses/15009/lessons/121686
@@ -27,7 +29,11 @@ public class Q121686_drill {
 
   public long[] solution(int[][] program) {
     long[] answer = new long[11];
-
+    Arrays.sort(program, (a, b) -> a[1] - b[1]);
+    List<ArrayDeque<int[]>> buckets = new ArrayList<>();
+    for (int i = 0; i <= 10; i++) {
+      buckets.add(new ArrayDeque<>());
+    }
     return answer;
   }
 }

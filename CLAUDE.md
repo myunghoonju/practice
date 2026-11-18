@@ -41,6 +41,8 @@ Design and algorithm reasoning are solid; the gap is **translating a confirmed d
 - **Coach self-check**: verify any design or example you propose against a real test case before presenting it (past errors: 121689, 121690 designs; 64064 example lengths).
 - Give one recommendation, never a menu of options.
 - **New coaching lessons go here, not in memory**: when you learn something new about how this user learns or slips, add one bullet to this section. Memory is per-machine; this file syncs via git.
+- Fill-in-the-blank hints don't work for Java API syntax the user hasn't memorized (comparator lambda, `List<ArrayDeque<int[]>>` setup; 2026-11-18). For pure API shape, skip the blanks and go straight to code + numeric trace, then have them close it and rewrite.
+- Watch loop bounds when array size = max value + 1 (e.g. 11 buckets for priorities 1~10): user wrote `i < 10`.
 - Watch for recurring Java slips: pass-by-value when moving state into helpers; backtracking choose→recurse→undo drifting apart; renaming params vs. actually swapping argument order.
 
 ## Debugging technique
