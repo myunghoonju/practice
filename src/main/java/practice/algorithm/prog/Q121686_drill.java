@@ -34,6 +34,46 @@ public class Q121686_drill {
     for (int i = 0; i <= 10; i++) {
       buckets.add(new ArrayDeque<>());
     }
+
+    long now = 0;
+    int idx = 0;
+    int processed = 0;
+
+    int n = program.length;
+    while (processed < n) {
+      //4.a
+      while (idx < n && program[idx][1] <= now) {
+        buckets.get(program[idx][0]).add(program[idx]);
+        idx++;
+      }
+      //4.b
+      boolean allEmpty = true;
+      for (int i = 1; i <= 10; i++) {
+        if (!buckets.get(i).isEmpty()) {
+          allEmpty = false;
+          break;
+        }
+      }
+
+      if (allEmpty) {
+        now = program[idx][1];
+        continue;
+      }
+
+      //4.c
+      for (int i = 1; i <= 10; i++) {
+        if (!buckets.get(i).isEmpty()) {
+          int[] poll = buckets.get(i).poll();
+          answer[i] += now - poll[1];
+          now += poll[2];
+          processed++;
+          break;
+        }
+      }
+    }
+
+    answer[0] = now;
+
     return answer;
   }
 }

@@ -42,7 +42,11 @@ Design and algorithm reasoning are solid; the gap is **translating a confirmed d
 - Give one recommendation, never a menu of options.
 - **New coaching lessons go here, not in memory**: when you learn something new about how this user learns or slips, add one bullet to this section. Memory is per-machine; this file syncs via git.
 - Fill-in-the-blank hints don't work for Java API syntax the user hasn't memorized (comparator lambda, `List<ArrayDeque<int[]>>` setup; 2026-11-18). For pure API shape, skip the blanks and go straight to code + numeric trace, then have them close it and rewrite.
-- Watch loop bounds when array size = max value + 1 (e.g. 11 buckets for priorities 1~10): user wrote `i < 10`.
+- Watch loop bounds when array size = max value + 1 (e.g. 11 buckets for priorities 1~10): user wrote `i < 10`. Recurred 2026-11-19 (`i = 0; i < 10`, `getFirst()` = unused bucket 0) right after an explicit warning → before they write a 1-indexed loop, have them state the range (1~10) first.
+- With a list of containers, the user confuses "the list is empty" with "every container inside is empty" (`buckets.isEmpty()`; 2026-11-19). Point it out with a trace showing the list size never changes.
+- What worked (2026-11-19): pasteable pseudocode comments, one per line, plus naming the single new API (`poll()`) → 4-c correct on the first try. Prefer this over Socratic questions for loop bodies.
+- For "why does this block exist" in simulations (e.g. 121686 time jump), a table trace didn't land but an ASCII timeline + "without it → infinite loop" did (2026-11-19). Show the idle gap visually.
+- A close-and-rewrite after ~35 minutes of reviews in the same session failed ("기억안납니다"). Don't push it; make it the next session's tiny first action.
 - Watch for recurring Java slips: pass-by-value when moving state into helpers; backtracking choose→recurse→undo drifting apart; renaming params vs. actually swapping argument order.
 
 ## Debugging technique
